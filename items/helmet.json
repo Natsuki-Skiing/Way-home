@@ -1,0 +1,82 @@
+[
+  {
+    "type": "Helmet",
+    "class": 1,
+    "name": "Cloth Cap",
+    "protection": 1,
+    "value": 1,
+    "description": "A simple cloth cap that provides minimal head protection. Better suited for keeping the sun out of your eyes than stopping a blade."
+  },
+  {
+    "type": "Helmet",
+    "class": 2,
+    "name": "Goblin Skull Helm",
+    "protection": 2,
+    "value": 5,
+    "description": "Made from the skull of a larger creature, this grotesque helmet is held together with crude metal bands. Intimidating but not very effective."
+  },
+  {
+    "type": "Helmet",
+    "class": 3,
+    "name": "Leather Coif",
+    "protection": 4,
+    "value": 12,
+    "description": "A fitted leather hood that covers the head and neck. Standard protection for scouts and light infantry. Comfortable and practical."
+  },
+  {
+    "type": "Helmet",
+    "class": 4,
+    "name": "Mail Coif",
+    "protection": 8,
+    "value": 25,
+    "description": "Chainmail protection for the head and neck. Often worn under a great helm for maximum protection. The metal rings clink softly when moving."
+  },
+  {
+    "type": "Helmet",
+    "class": 5,
+    "name": "Steel Great Helm",
+    "protection": 15,
+    "value": 60,
+    "description": "A full-face helmet with eye slits and breathing holes. Provides excellent protection but limits vision and hearing. Favored by knights in heavy combat."
+  },
+  {
+    "type": "Helmet",
+    "class": 6,
+    "name": "Mithril Circlet",
+    "protection": 22,
+    "value": 180,
+    "description": "An elegant circlet forged from pure mithril and inlaid with protective runes. Offers superior protection while maintaining the wearer's dignity and visibility."
+  },
+  {
+    "type": "Helmet",
+    "class": 7,
+    "name": "Dragon Bone Crown",
+    "protection": 35,
+    "value": 320,
+    "description": "Carved from the skull of an ancient dragon and reinforced with dragonscale. The eye sockets glow with residual draconic power, striking fear into enemies."
+  },
+  {
+    "type": "Helmet",
+    "class": 8,
+    "name": "Seraphim's Halo",
+    "protection": 50,
+    "value": 650,
+    "description": "A divine crown that hovers slightly above the wearer's head, glowing with celestial light. Provides protection through divine blessing rather than physical barrier."
+  },
+  {
+    "type": "Helmet",
+    "class": 9,
+    "name": "Crown of the Void King",
+    "protection": 80,
+    "value": 1200,
+    "description": "A terrifying helmet that seems to absorb light itself. Worn by the legendary Void King, it is said to protect the mind from all forms of attack while instilling dread in all who gaze upon it."
+  },
+  {
+    "type": "Helmet",
+    "class": 10,
+    "name": "Diadem of Eternal Dominion",
+    "protection": 120,
+    "value": 2500,
+    "description": "The ultimate crown of power, forged when the world was young. Its dark crystal centerpiece contains the essence of fallen gods, granting the wearer immunity to mortal concerns and divine wrath alike."
+  }
+]

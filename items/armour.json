@@ -1,0 +1,82 @@
+[
+  {
+    "type": "Armour",
+    "class": 1,
+    "name": "Tattered Rags",
+    "protection": 1,
+    "value": 0,
+    "description": "Barely holding together, these worn cloth scraps offer minimal protection but are better than nothing. Often worn by beggars and the desperate."
+  },
+  {
+    "type": "Armour",
+    "class": 2,
+    "name": "Goblin Hide Vest",
+    "protection": 3,
+    "value": 8,
+    "description": "Crude armor crafted from the hide of fallen goblins. Smells terrible and offers basic protection. The stitching is rough and uneven, typical of goblin craftsmanship."
+  },
+  {
+    "type": "Armour",
+    "class": 3,
+    "name": "Leather Jerkin",
+    "protection": 5,
+    "value": 15,
+    "description": "A simple leather vest reinforced with metal studs. Standard protection for merchants and town guards. Well-crafted but unremarkable."
+  },
+  {
+    "type": "Armour",
+    "class": 4,
+    "name": "Chainmail Hauberk",
+    "protection": 12,
+    "value": 45,
+    "description": "Interlocking metal rings provide solid protection against slashing attacks. Heavy but reliable, favored by professional soldiers and mercenaries."
+  },
+  {
+    "type": "Armour",
+    "class": 5,
+    "name": "Steel Plate Armor",
+    "protection": 20,
+    "value": 120,
+    "description": "Masterfully forged steel plates cover vital areas. The mark of a true warrior, this armor has seen many battles and bears the scars to prove it."
+  },
+  {
+    "type": "Armour",
+    "class": 6,
+    "name": "Enchanted Mithril Mail",
+    "protection": 30,
+    "value": 250,
+    "description": "Woven from the finest mithril threads and blessed by ancient magic. Light as silk yet stronger than steel, it shimmers with an otherworldly glow."
+  },
+  {
+    "type": "Armour",
+    "class": 7,
+    "name": "Dragon Scale Cuirass",
+    "protection": 45,
+    "value": 400,
+    "description": "Crafted from the scales of an ancient red dragon. Naturally resistant to fire and incredibly durable. Each scale tells a story of the dragon's long life."
+  },
+  {
+    "type": "Armour",
+    "class": 8,
+    "name": "Celestial Plate",
+    "protection": 65,
+    "value": 800,
+    "description": "Forged in the heavens by divine smiths. This radiant armor glows with holy light and is said to turn away even the darkest magic."
+  },
+  {
+    "type": "Armour",
+    "class": 9,
+    "name": "Aegis of the Eternal Guardian",
+    "protection": 100,
+    "value": 1500,
+    "description": "Legendary armor worn by the first guardian of the realm. Inscribed with runes of protection that have never been deciphered. It is said to make the wearer nearly invincible."
+  },
+  {
+    "type": "Armour",
+    "class": 10,
+    "name": "Void Emperor's Carapace",
+    "protection": 150,
+    "value": 3000,
+    "description": "Forged from the essence of the void itself and tempered in the heart of a dying star. This ultimate armor exists partially outside reality, making its wearer nearly untouchable by mortal weapons."
+  }
+]

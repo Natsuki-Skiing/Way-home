@@ -1,0 +1,72 @@
+[
+  {
+    "type": "Book",
+    "class": 1,
+    "name": "Tattered Journal",
+    "value": 1,
+    "description": "A worn journal with mostly illegible scrawl. Might contain the ramblings of a madman or the secrets of a forgotten art. Hard to tell which."
+  },
+  {
+    "type": "Book",
+    "class": 2,
+    "name": "Goblin Recipe Book",
+    "value": 5,
+    "description": "A crude collection of goblin cooking methods written in broken Common. Most recipes involve questionable ingredients and dubious preparation methods."
+  },
+  {
+    "type": "Book",
+    "class": 3,
+    "name": "Basic Herbalism Guide",
+    "value": 15,
+    "description": "A simple guide to identifying common herbs and their uses. Essential reading for any would-be alchemist or healer starting their journey."
+  },
+  {
+    "type": "Book",
+    "class": 4,
+    "name": "Tales of the Northern Kingdoms",
+    "value": 30,
+    "description": "A collection of historical accounts from the northern realms. Contains valuable information about local customs, politics, and ancient conflicts."
+  },
+  {
+    "type": "Book",
+    "class": 5,
+    "name": "Compendium of Sword Techniques",
+    "value": 60,
+    "description": "A detailed manual on various sword fighting styles. Written by a master swordsman, it contains techniques that could improve any warrior's combat prowess."
+  },
+  {
+    "type": "Book",
+    "class": 6,
+    "name": "Arcane Theories and Applications",
+    "value": 120,
+    "description": "An advanced text on magical theory written by court wizards. Contains fundamental principles of spellcasting and magical item creation."
+  },
+  {
+    "type": "Book",
+    "class": 7,
+    "name": "Chronicles of the Dragon Wars",
+    "value": 200,
+    "description": "A rare historical text documenting the great dragon conflicts of ages past. Contains tactical knowledge and dragon lore that could prove invaluable."
+  },
+  {
+    "type": "Book",
+    "class": 8,
+    "name": "The Forbidden Grimoire",
+    "value": 400,
+    "description": "A dangerous tome bound in scales and sealed with silver chains. Contains forbidden knowledge of dark magic and summoning rituals. Reading it may corrupt the soul."
+  },
+  {
+    "type": "Book",
+    "class": 9,
+    "name": "Prophecies of the End Times",
+    "value": 800,
+    "description": "Ancient prophecies written by the last oracle before the great silence fell. The visions within speak of world-ending events and the heroes who might prevent them."
+  },
+  {
+    "type": "Book",
+    "class": 10,
+    "name": "The Akashic Records",
+    "value": 2000,
+    "description": "The legendary book containing all knowledge that ever was or ever will be. Simply touching its pages grants visions of infinite possibility, but the human mind can only comprehend fragments without losing sanity."
+  }
+]

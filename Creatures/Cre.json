@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Ill Rat",
+    "class": 1,
+    "baseHp": 3,
+    "baseDef": 5,
+    "baseAttack": 10
+  },
+  {
+    "name": "Rat",
+    "class": 1,
+    "baseHp": 6,
+    "baseDef": 6,
+    "baseAttack": 12
+  },
+  {
+    "name": "Dancing Frog",
+    "class": 1,
+    "baseHp": 2,
+    "baseDef": 6,
+    "baseAttack": 5
+  },
+  {
+    "name": "Skeleton",
+    "class": 4,
+    "baseHp": 16,
+    "baseDef": 25,
+    "baseAttack": 25
+  },
+  {
+    "name": "Dog",
+    "class": 2,
+    "baseHp": 6,
+    "baseDef": 20,
+    "baseAttack": 20
+  },
+  {
+    "name": "Coyote",
+    "class": 2,
+    "baseHp": 10,
+    "baseDef": 20,
+    "baseAttack": 23
+  },
+  {
+    "name": "Wolf",
+    "class": 3,
+    "baseHp": 12,
+    "baseDef": 25,
+    "baseAttack": 25
+  },
+  {
+    "name": "Stunted Goblin",
+    "class": 3,
+    "baseHp": 10,
+    "baseDef": 18,
+    "baseAttack": 25
+  },
+  {
+    "name": "Troll Cub",
+    "class": 5,
+    "baseHp": 30,
+    "baseDef": 45,
+    "baseAttack": 30
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "type": "Fish",
+    "class": 1,
+    "name": "Stale Bread Crumbs",
+    "value": 0,
+    "description": "Rock-hard crumbs that have seen better days. Better than starving, but only just barely.",
+    "hp": 1,
+    "dayTillRot": 1
+  },
+  {
+    "type": "Fish",
+    "class": 2,
+    "name": "Pond Minnow",
+    "value": 2,
+    "description": "A tiny freshwater fish. Barely a mouthful, but every bit of sustenance counts in these dark times.",
+    "hp": 3,
+    "dayTillRot": 1
+  },
+  {
+    "type": "Fish",
+    "class": 3,
+    "name": "Turnip",
+    "value": 3,
+    "description": "A humble root vegetable. Not the most appetizing, but it will keep you alive through the harsh winter months.",
+    "hp": 8,
+    "dayTillRot": 5
+  },
+  {
+    "type": "Fish",
+    "class": 4,
+    "name": "River Trout",
+    "value": 12,
+    "description": "A decent-sized freshwater fish with firm flesh. A welcome sight after days of foraging for scraps.",
+    "hp": 15,
+    "dayTillRot": 3
+  },
+  {
+    "type": "Fish",
+    "class": 5,
+    "name": "Venison Haunch",
+    "value": 25,
+    "description": "Fresh meat from a forest deer. Rich and satisfying, this will restore strength to weary travelers. Best roasted over an open flame.",
+    "hp": 35,
+    "dayTillRot": 4
+  },
+  {
+    "type": "Fish",
+    "class": 6,
+    "name": "Honey-Glazed Ham",
+    "value": 45,
+    "description": "A fine cut of pork, glazed with rare wildflower honey. The kind of meal served in noble halls, rich enough to satisfy even the heartiest appetite.",
+    "hp": 60,
+    "dayTillRot": 6
+  },
+  {
+    "type": "Fish",
+    "class": 7,
+    "name": "Moonberry Pie",
+    "value": 80,
+    "description": "Baked with rare moonberries that only grow in blessed groves. The pie glows faintly with ethereal light and is said to grant visions of the future.",
+    "hp": 90,
+    "dayTillRot": 8
+  },
+  {
+    "type": "Fish",
+    "class": 8,
+    "name": "Phoenix Egg Omelette",
+    "value": 150,
+    "description": "Prepared from the egg of a phoenix, this dish radiates warmth and vitality. Consuming it fills the body with rejuvenating fire that can heal grievous wounds.",
+    "hp": 120,
+    "dayTillRot": 10
+  },
+  {
+    "type": "Fish",
+    "class": 9,
+    "name": "Kraken Steak",
+    "value": 300,
+    "description": "A massive cut from the legendary sea beast. The meat is tough but incredibly nourishing, said to grant temporary resistance to drowning and deep-sea pressure.",
+    "hp": 180,
+    "dayTillRot": 12
+  },
+  {
+    "type": "Fish",
+    "class": 10,
+    "name": "Ambrosia of the Gods",
+    "value": 1000,
+    "description": "The legendary Fish of the divine realm. A single bite is said to grant immortality for a day and restore the consumer to perfect health. Wars have been fought over a single vial.",
+    "hp": 300,
+    "dayTillRot": 365
+  }
+]

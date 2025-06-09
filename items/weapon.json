@@ -1,0 +1,101 @@
+[
+  {
+    "type": "Weapon",
+    "class": 1,
+    "name": "Rock",
+    "damage": 2,
+    "maxCondition": 10000,
+    "value": 0,
+    "description": "Cold round rock, good when combined with pocket sand"
+  },
+  {
+    "type": "Weapon",
+    "class": 1,
+    "name": "Kitchen Fork",
+    "damage": 10,
+    "maxCondition": 100,
+    "value": 1,
+    "description": "A kitchen fork, not a fancy one. Is made from steel. Handle has some rust on it, probably reduces the value"
+  },
+  {
+    "type": "Weapon",
+    "class": 2,
+    "name": "Goblin Dagger",
+    "damage": 7,
+    "maxCondition": 50,
+    "value": 3,
+    "description": "Goblins are repulsive creatures, this iron dagger reflects this. The blade is long crooked and misaligned. The blade is drenched in filth and dirt in hopes that if the dagger fails to kill its target the resulting infection will. This type of blade is usually wielded by 'outcast' goblins"
+  },
+  {
+    "type": "Weapon",
+    "class": 3,
+    "name": "Blunt steel dagger",
+    "damage": 5,
+    "maxCondition": 100,
+    "value": 6,
+    "description": "A crudely crafted steel dagger. Simple, plain & cheap. Made in great quantities by the men of the North. In Northern cultures not carrying a blade at all times is considered absurd"
+  },
+  {
+    "type": "Weapon",
+    "class": 4,
+    "name": "Iron Longsword",
+    "damage": 25,
+    "maxCondition": 150,
+    "value": 35,
+    "description": "A well-balanced iron sword favored by town guards and mercenaries. Shows signs of regular maintenance and has a worn leather grip from years of use."
+  },
+  {
+    "type": "Weapon",
+    "class": 5,
+    "name": "Steel Bastard Sword",
+    "damage": 40,
+    "maxCondition": 200,
+    "value": 80,
+    "description": "A versatile weapon that can be wielded with one or two hands. Forged from quality steel and bearing the mark of a skilled weaponsmith. Many knights prefer this reliable blade."
+  },
+  {
+    "type": "Weapon",
+    "class": 6,
+    "name": "Enchanted Silver Blade",
+    "damage": 60,
+    "maxCondition": 180,
+    "value": 200,
+    "description": "A masterwork sword blessed by moon-touched silver and arcane runes. The blade glows faintly in darkness and is particularly effective against creatures of shadow and undeath."
+  },
+  {
+    "type": "Weapon",
+    "class": 7,
+    "name": "Flamberge of the Crimson Order",
+    "damage": 85,
+    "maxCondition": 220,
+    "value": 350,
+    "description": "A massive two-handed sword with a distinctive wavy blade. Once wielded by the elite knights of the Crimson Order before their fall to corruption. The blade still hungers for battle."
+  },
+  {
+    "type": "Weapon",
+    "class": 8,
+    "name": "Soulrend",
+    "damage": 120,
+    "maxCondition": 240,
+    "value": 600,
+    "description": "A cursed blade that feeds on the life force of those it strikes. The weapon whispers dark promises to its wielder and grows stronger with each life it claims. Handle with extreme caution."
+  },
+  {
+    "type": "Weapon",
+    "class": 9,
+    "name": "Dragon Slayer",
+    "damage": 100,
+    "maxCondition": 250,
+    "value": 287,
+    "description": "A titan's blade, forged by a gentle hand in a realm lost to time. Known in every land, it was wielded by a warrior cursed to wander—a soul bound to endless battle and sorrow. The weapon lives on, heavy with memory."
+  },
+  {
+    "type": "Weapon",
+    "class": 10,
+    "name": "Worldbreaker",
+    "damage": 200,
+    "maxCondition": 300,
+    "value": 1500,
+    "description": "The ultimate weapon, forged from the core of a shattered planet and tempered in the fires of creation itself. It is said that this blade can cut through the very fabric of reality. Only the most legendary heroes can hope to wield such power."
+  }
+]

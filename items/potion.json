@@ -1,0 +1,72 @@
+[
+  {
+    "type": "Potion",
+    "class": 1,
+    "name": "Muddy Water",
+    "value": 1,
+    "description": "Questionable liquid from a stagnant pond. Might quench thirst, might cause illness. Desperation makes people do strange things."
+  },
+  {
+    "type": "Potion",
+    "class": 2,
+    "name": "Weak Healing Salve",
+    "value": 8,
+    "description": "A crude mixture of herbs and mud. Provides minimal healing but might prevent infection. Tastes like it was made in a goblin's boot."
+  },
+  {
+    "type": "Potion",
+    "class": 3,
+    "name": "Minor Health Potion",
+    "value": 15,
+    "description": "A basic red potion that restores a small amount of vitality. Standard fare for novice adventurers and town militia."
+  },
+  {
+    "type": "Potion",
+    "class": 4,
+    "name": "Healing Draught",
+    "value": 35,
+    "description": "A well-brewed potion with a pleasant herbal taste. Provides moderate healing and is trusted by experienced warriors."
+  },
+  {
+    "type": "Potion",
+    "class": 5,
+    "name": "Greater Healing Elixir",
+    "value": 80,
+    "description": "A potent healing potion that glows with inner warmth. Can mend broken bones and close deep wounds. A lifesaver in desperate situations."
+  },
+  {
+    "type": "Potion",
+    "class": 6,
+    "name": "Elixir of Vigor",
+    "value": 150,
+    "description": "An enchanted potion that not only heals wounds but also temporarily enhances physical capabilities. The liquid shimmers with magical energy."
+  },
+  {
+    "type": "Potion",
+    "class": 7,
+    "name": "Phoenix Tears",
+    "value": 300,
+    "description": "A legendary healing potion made from the tears of a phoenix. Can bring someone back from the brink of death and burns away poison and disease."
+  },
+  {
+    "type": "Potion",
+    "class": 8,
+    "name": "Nectar of Immortality",
+    "value": 600,
+    "description": "A divine elixir that grants temporary immortality. For one day, the drinker cannot die, though they may still suffer pain and injury. Extremely rare."
+  },
+  {
+    "type": "Potion",
+    "class": 9,
+    "name": "Essence of Life",
+    "value": 1200,
+    "description": "Pure life force distilled into liquid form. Can resurrect the recently dead and restore youth to the aged. Wars have been fought over single vials."
+  },
+  {
+    "type": "Potion",
+    "class": 10,
+    "name": "Philosopher's Panacea",
+    "value": 3000,
+    "description": "The ultimate alchemical achievement. This golden elixir can cure any ailment, grant eternal youth, and even restore lost souls. Only one has ever been successfully created."
+  }
+]
