@@ -1,100 +1,226 @@
-import curses
+import random 
 import time
-import random
+import platform
+import sys 
+import math
+from clear import *
+import threading
+from tile import * 
+from printAt import *
+from window import * 
+from player import *
+from items import *
+from itemManager import *
+water = tile("≈",False,"blue")
+fishTile = tile("F",False,"yellow")
+selectedWater = tile("≈",False,"red")
+selectedFish = tile("F",False,"pink")
 
-def fishing(stdscr):
-    curses.curs_set(0)
-    stdscr.nodelay(True)
-    stdscr.clear()
-    height, width = stdscr.getmaxyx()
-
-    # Create two windows: one for bar and one for messages
-    bar_win = curses.newwin(3, 40, height // 2 - 1, (width - 40) // 2)
-    msg_win = curses.newwin(5, 40, height // 2 + 3, (width - 40) // 2)
-
-    def draw_bar(win, length, hit_range):
-        position = 0
-        direction = 1
-        hit_start = random.randint(5, length - hit_range - 5)
-        hit_end = hit_start + hit_range
-
-        while True:
-            win.clear()
-            for i in range(length):
-                if hit_start <= i < hit_end:
-                    win.addch(1, i, ord('#'))
+class fishingGame:
+    def showFish(self):
+        
+            
+            
+        self.fishX = random.randint(0,self.pondX)
+        self.fishY = random.randint(0,self.pondY)
+        
+        self.imgBuff[self.fishX][self.fishY] = fishTile
+        self.drawBuffer()
+        
+    def startState(self):
+        #Fish appear in random location 
+        running = True 
+        while running:
+            #wait rand time for a fish to appear
+            time.sleep(random.uniform(2.0,7.0))
+            
+            self.showFish()
+            
+            if(self.Input()):
+                #DEBUG
+                running = False
+                self.selectedBuffer[self.fishX][self.fishY] = selectedFish
+            else:
+                self.imgBuff[self.fishX][self.fishY] = water
+                self.drawBuffer()
+            
+        pass
+    def __init__(self,Player:player,itemMan:itemManager):
+        self.player = Player
+        self.itemMan = itemMan
+        self.windows = platform.system() == "Windows"
+        self.timeout = 0.35
+        self.fishX = -1 
+        self.fishY = -1
+        self.pondX = 29 
+        self.pondY = 29
+        
+        # Trying somthing new here 
+        # Dunno if it's good or not 
+        if self.windows:
+            import msvcrt
+            self.msvcrt = msvcrt 
+               
+        else:
+            import select
+            import termios
+            import tty
+            self.select = select
+            self.termios = termios 
+            self.tty = tty
+        clear()
+        self.window = Window(0,0,30,30,"Fishing")
+        self.imgBuff = [[water for _ in range(self.pondX)] for _ in range(self.pondY)]
+        self.selectedBuffer = [[selectedWater for _ in range(self.pondX)] for _ in range(self.pondY)]
+        self.pondX -=1 
+        self.pondY -=1 
+    def renderLine(self,linePos:int,vertical:bool):
+        if vertical:
+           
+            col = [row[linePos] for row in self.selectedBuffer]
+            image = [
+                row[:linePos] + [col[i]] + row[linePos+1:]
+                for i, row in enumerate(self.imgBuff)
+            ]
+        else:
+            
+            line = self.selectedBuffer[linePos].copy()
+            image = self.imgBuff.copy()
+            image[linePos] = line
+    
+        
+        self.drawBuffer(buffer = image)
+        return(image)
+            
+        
+            
+        
+    def line(self,vertical:bool):
+        
+        if(bool(random.randint(0,1))):
+            linePos = 0
+            direction = True 
+        else:
+            linePos = self.pondX 
+            direction = False
+        
+        running = True
+        
+        # Need to change the timeout time, maybe half ?
+        if vertical:
+            self.timeout = 0.003
+        else:
+            self.timeout = 0.0035
+        while running:
+            # Changes direction if at edges
+            image = self.renderLine(linePos,vertical)
+            if direction:
+                if linePos == self.pondX:
+                    direction = False 
+            else:
+                if linePos == 0:
+                    direction = True 
+            
+            if(self.Input()):
+                self.imgBuff = image.copy()
+                break 
+            else:
+                if(direction):
+                    linePos +=1 
                 else:
-                    win.addch(1, i, ord('-'))
-            win.addch(1, position, ord('*'))
-            win.refresh()
+                    linePos -=1
+        
+        return(linePos)
+            
+                    
+    def castingState(self)->tuple:
+        #X or y first 
+        vertical = bool(random.randint(0,1))
+        
+        fv = self.line(vertical)
+        #Go other way
+        vertical = not vertical
+        sv = self.line(vertical)
+        
+        if(vertical):
+            return((fv,sv))
+        else:
+            return(sv,fv)
+        
+    def drawBuffer(self,buffer= None):
+        if buffer:
+            imgBuff = buffer
+        else:
+            imgBuff = self.imgBuff
+        renderList = []
+        for row in imgBuff:
+            rowStr = str()
+            for tile in row:
+                rowStr += tile.render()
+            renderList.append(rowStr)
+        self.window.row_draw(renderList)
+    def getFish(self,dist:float):
+        gotFish = False 
+        dist = int(dist)
+        if(dist == 0):
+            gotFish = True
+        elif(0 == random.randint(0,int(dist))):
+            gotFish = True 
+        if gotFish:
+            classWeight = [6,5,5,4,4,4,4,3,2,1]
+            while True:
+                try:
+                    fClass = random.choices([1,2,3,4,5,6,7,8,9,10],weights=classWeight,k=1)[0]
+                    fish = self.itemMan.getItem("fish",fClass,0)
+                    break
+                except:
+                    continue
+            return(fish)
+        else:
+            return(None)
+    def mainLoop(self):
+        
+        running = True
+        self.drawBuffer()
+        self.startState()
+        self.player.equiptItems["rod"].reduceCondtion(1)
+        castTup = self.castingState()
+        #Calc dist from cast and fish 
+        dist = math.dist(castTup,(self.fishX,self.fishY))
+        dist = max(dist - self.player.equiptItems["rod"].distMod,0)
+        
+        return(self.getFish(dist))
+        
+        pass
+    def Input(self)->bool:
+        win = False
+        if self.windows:
+            timeout = self.timeout *10
+            startTime = time.time()
+            while time.time()- startTime < timeout:
+                if self.msvcrt.kbhit():
+                    if self.msvcrt.getwch() == ' ':
+                        win = True
+                        break 
+        else:
+            fd = sys.stdin.fileno()
+            oldSettings = self.termios.tcgetattr(fd)
+            self.tty.setraw(sys.stdin.fileno())
+            timeout = self.timeout * 10  # Add timeout value
 
-            key = stdscr.getch()
-            if key == ord(' '):
-                return hit_start <= position < hit_end
+            try:
+                startTime = time.time()
+                
+                win = False
+                
+                while time.time() - startTime < timeout:
+                    if self.select.select([sys.stdin], [], [], 0)[0]:
+                        if sys.stdin.read(1) == ' ':
+                            win = True
+                            break
+                      # Prevent excessive CPU usage
+                    
+            finally:
+                self.termios.tcsetattr(fd, self.termios.TCSADRAIN, oldSettings)
+        return(win)
 
-            position += direction
-            if position == 0 or position == length - 1:
-                direction *= -1
-
-            time.sleep(0.02)
-
-    msg_win.addstr(0, 0, "Cast your line! Timing is key.")
-    msg_win.addstr(1, 0, "Press SPACE when the * is in the '#' zone")
-    msg_win.refresh()
-    time.sleep(1.5)
-
-    # Horizontal bar timing
-    success = draw_bar(bar_win, 30, 6)
-    if not success:
-        msg_win.clear()
-        msg_win.addstr(0, 0, "The fish got away! Try again.")
-        msg_win.refresh()
-        stdscr.getch()
-        return
-
-    msg_win.clear()
-    msg_win.addstr(0, 0, "Nice catch on horizontal! Now vertical...")
-    msg_win.refresh()
-    time.sleep(1.5)
-
-    # Vertical bar timing
-    def draw_vertical_bar(win, height, hit_range):
-        position = 0
-        direction = 1
-        hit_start = random.randint(2, height - hit_range - 2)
-        hit_end = hit_start + hit_range
-
-        while True:
-            win.clear()
-            for i in range(height):
-                if hit_start <= i < hit_end:
-                    win.addch(i, 2, ord('#'))
-                else:
-                    win.addch(i, 2, ord('|'))
-            win.addch(position, 2, ord('*'))
-            win.refresh()
-
-            key = stdscr.getch()
-            if key == ord(' '):
-                return hit_start <= position < hit_end
-
-            position += direction
-            if position == 0 or position == height - 1:
-                direction *= -1
-
-            time.sleep(0.1)
-
-    vert_win = curses.newwin(20, 5, height // 2 - 10, (width - 5) // 2)
-    success = draw_vertical_bar(vert_win, 20, 4)
-
-    msg_win.clear()
-    if success:
-        msg_win.addstr(0, 0, "You caught a fish! 🎣")
-    else:
-        msg_win.addstr(0, 0, "The fish slipped away on vertical!")
-    msg_win.refresh()
-    stdscr.getch()
-
-if __name__ == "__main__":
-    curses.wrapper(fishing)
- 

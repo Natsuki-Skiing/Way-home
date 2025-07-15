@@ -25,6 +25,10 @@ class Fish(Item):
         self.hp = hp
         self.dayTillRot = dayRot
 
+class Food(Fish):
+    def __init__(self, name: str, class_level: int, value: int, description: str, hp: int, dayRot: int):
+        super().__init__(name, class_level, value, description, hp, dayRot)
+
 class Helmet(Armour):
     def __init__(self, name: str, class_level: int, protection: int, value: int, description: str):
         super().__init__(name, class_level, protection, value, description)
@@ -43,21 +47,30 @@ class Book(Item):
         self.page = 0
 
 class FishingRod(Item):
-    def __init__(self, name: str, class_level: int, value: int, description: str):
+    def __init__(self, name: str, class_level: int, value: int, description: str, distMod: float, maxCondition: int):
         super().__init__(name, class_level, value, description)
-
+        self.distMod = distMod
+        self.maxCon = maxCondition
+        self.condition = self.maxCon
+    
 class Potion(Item):
     def __init__(self, name: str, class_level: int = 1, value: int = 0, description: str = ""):
         super().__init__(name, class_level, value, description)
 
 # Mapping for type names to classes and their fields (including base class)
+# This dictionary is the central point for defining new item types.
+# To add a new item type:
+# 1. Define the class for the new item (e.g., class NewItem(Item): ...).
+# 2. Add an entry to type_map with the item's name, its class, and a list of its fields.
+#    Make sure to include all fields required by its constructor, including inherited ones.
 type_map = {
     'Armour': (Armour, ['name', 'class', 'protection', 'value', 'description']),
     'Helmet': (Helmet, ['name', 'class', 'protection', 'value', 'description']),
     'Weapon': (Weapon, ['name', 'class', 'damage', 'maxCondition', 'value', 'description']),
     'Fish': (Fish, ['name', 'class', 'value', 'description', 'hp', 'dayTillRot']),
+    'Food': (Food, ['name', 'class', 'value', 'description', 'hp', 'dayTillRot']), # Added Food class
     'Book': (Book, ['name', 'class', 'value', 'description']),
-    'FishingRod': (FishingRod, ['name', 'class', 'value', 'description']),
+    'FishingRod': (FishingRod, ['name', 'class', 'value', 'description', 'distMod', 'maxCondition']), # Updated FishingRod fields
     'Potion': (Potion, ['name', 'class', 'value', 'description']),
 }
 
@@ -242,11 +255,15 @@ class ItemEditorApp(tk.Tk):
         # gather other field values
         for field, var in self.field_vars.items():
             val = var.get()
-            if field in ['value','protection','damage','maxCondition','hp','dayTillRot']:
+            # Special handling for numerical fields
+            if field in ['value', 'protection', 'damage', 'maxCondition', 'hp', 'dayTillRot', 'distMod', 'maxCon']:
                 try:
-                    val = int(val)
+                    if field == 'distMod':
+                        val = float(val)
+                    else:
+                        val = int(val)
                 except ValueError:
-                    messagebox.showerror("Error", f"{field} must be an integer.")
+                    messagebox.showerror("Error", f"{field} must be a valid number.")
                     return
             data[field] = val
 

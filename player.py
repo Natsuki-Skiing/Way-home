@@ -3,6 +3,7 @@ from clear import clear
 import time 
 from window import Window
 from item import *
+from printAt import *
 import sys 
 from bookReader import bookReader
 from selectMenu import *
@@ -12,7 +13,7 @@ class player(creature):
         self.x = int()
         self.y = int()
         #World / current tile
-        super().__init__(name,1,50)
+        super().__init__(name,1,25)
         self.name = name
         self.wX = 0
         self.wY = 0
@@ -24,9 +25,13 @@ class player(creature):
         self.xpToNextLevel = 50
         self.ap = 10
         self.prevLoc = (0,0)
-        self.equiptItems = {"helmet":None , "armour":None,"weapon":None}
+        self.equiptItems = {"helmet":None , "armour":None,"weapon":None,"rod":None}
         self.items = list()
         self.lastRotTime = [0,0,0]
+        self.creaturesKilled = dict()
+        self.totalXp = 0
+        self.swordFrags = 0
+        self.madeSword = False
     def addHp(self,amount:int):
         self.hp += amount 
         if(self.hp >self.maxHp):
@@ -45,21 +50,26 @@ class player(creature):
             return(outList)
     def addXp(self,xp:int):
         running = True 
+        self.totalXp += xp
         while running:
             
             if(xp + self.xp >= self.xpToNextLevel):
                 self.xp -= self.xpToNextLevel
                 self.xpToNextLevel = int(self.xpToNextLevel * 1.5)
+                self.addHp(10)
                 self.levelUp()
             else:
                 self.xp += xp
                 running = False
     def levelUp(self):
         clear()
+        
         desDict = {"hp":("Player's health stat currently at "+str(self.maxHp)),"def":("Base defense stat which armour adds to. Currently "+str(self.defense)),"atk":("Attack ability. Weapons add to this stat. At "+str(self.attack))}
         print("Level up ")
+        print("Select an attribute to increase")
+        print("")
         print("(H)p:")
-        print(("     Player's health stat currently at "+str(self.maxHp)))
+        print(("     Player's health stat,by 2, currently at "+str(self.maxHp)))
         print("")
         print("(D)efense:")
         print(("     Base defense stat which armour adds to. Currently "+str(self.defense)))
@@ -71,7 +81,7 @@ class player(creature):
             selected = input(">").lower()
             match(selected):
                 case "h":
-                    self.hp+=1
+                    self.hp+=2
                     print("Levelled up hp")
                     running = False
                 case "d":
@@ -82,6 +92,7 @@ class player(creature):
                     self.attack+=1
                     print("Levelled up attack")
                     running = False
+        self.level +=1
         
                                                 
     
@@ -92,7 +103,10 @@ class player(creature):
         def printList(itemDict):
             for key in itemDict.keys():
                 item = itemDict[key]
-                print(f"{key} : {item.name}")
+                if item in self.equiptItems.values() and item != None:
+                    print(f"{key} : E {item.name}")
+                else:
+                    print(f"{key} :   {item.name}")
             print("--------")
             print("(B)ack")
         def genDict(itemDict,counter):
@@ -130,66 +144,88 @@ class player(creature):
         if(not Item in self.items):
                 return
         done = False
-        clear()
-        offset = 2
-        statsWin = Window(0,0,30,20,"Stats")
-        desWin = Window(statsWin.w+2,0,45,statsWin.h,"Description")
-        statsWin.draw_text(0,0,"Name:   "+Item.name)
-        if type(Item) == weapon:
-                statsWin.draw_text(0,offset,("Damage: "+str(Item.damage)))
-                offset +=2
-        elif type(Item) == armour:
-                statsWin.draw_text(0,offset,("Protection: "+str(Item.protection)))
-                offset +=2
-        elif type(Item) == fish:
-            statsWin.draw_text(0,offset,("Hp: "+str(Item.hp)))
-            offset +=2
-        statsWin.draw_text(0,offset,("Value:   £" +str(Item.value)))
-        offset +=2
-        
-        linesList = [Item.description[i : i + desWin.w] for i in range(0, len(Item.description), desWin.w)]
-        counter = 0 
-        for line in linesList:
-            desWin.draw_text(0,counter,line)
-            counter +=1
-        
-        # print("Selected:",Item.name)
-        # print("=================")
-        
-            
-            
-        offset = statsWin.h+3
-        sys.stdout.write(f"\033[{offset};{0}H{"What would you like to do?"}")
-
-        offset+=1
-        
-        
-        if (type(Item) in equipableItems):
-            sys.stdout.write(f"\033[{offset};{0}H{"(E)quip"}")
-            offset+=1
-        if(type(Item) == fish):
-            sys.stdout.write(f"\033[{offset};{0}H{"(E)at"}")
-            offset+=1
-           
-        if(type(Item) == book):
-            sys.stdout.write(f"\033[{offset};{0}H{"(R)ead"}")
-            offset+=1 
-        sys.stdout.write(f"\033[{offset};{0}H{"(G)et rid of"}")
-        offset+=1
-        sys.stdout.write(f"\033[{offset};{0}H{"(B)ack \n"}")
-        offset+=1
         while(not done):
+            
+            clear()
+            offset = 2
+            statsWin = Window(0,0,30,20,"Stats")
+            desWin = Window(statsWin.w+2,0,45,statsWin.h,"Description")
+            statsWin.draw_text(0,0,"Name:   "+Item.name)
+            if type(Item) == weapon:
+                    statsWin.draw_text(0,offset,("Damage: "+str(Item.damage)))
+                    offset +=2
+            elif type(Item) == armour or type(Item) == helmet:
+                    statsWin.draw_text(0,offset,("Protection: "+str(Item.protection)))
+                    offset +=2
+            elif type(Item) == fish or type(Item) == food:
+                statsWin.draw_text(0,offset,("Hp: "+str(Item.hp)))
+                offset +=2
+            if type(Item) == weapon or type(Item) == fishingRod:
+                statsWin.draw_text(0,offset,("Condition: "+str(Item.condition)+" / "+str(Item.maxCondition)))
+                offset +=2
+            statsWin.draw_text(0,offset,("Value:   £" +str(Item.value)))
+            offset +=2 
+            
+            
+            
+            linesList = [Item.description[i : i + desWin.w] for i in range(0, len(Item.description), desWin.w)]
+            counter = 0 
+            for line in linesList:
+                desWin.draw_text(0,counter,line)
+                counter +=1
+            
+            # print("Selected:",Item.name)
+            # print("=================")
+            
+                
+                
+            offset = statsWin.h+3
+            printAt(0,offset,"What would you like to do?")
+        
+
+            offset+=1
+            
+            
+            if (type(Item) in equipableItems and Item not in self.equiptItems.values()):
+                printAt(0,offset,'(E)quip')
+                
+                offset+=1
+            elif(type(Item) in equipableItems and Item  in self.equiptItems.values()):
+                
+                printAt(0,offset,"(U)nequip")
+                offset+=1
+            if(type(Item) == fish or type(Item) == food):
+                
+                printAt(0,offset,"(E)at")
+                offset+=1
+            
+            if(type(Item) == book):
+                
+                printAt(0,offset,"(R)ead")
+                offset+=1 
+            
+            printAt(0,offset,"(G)et rid of")
+            offset+=1
+            
+            printAt(0,offset,"(B)ack \n")
+            offset+=1
+            
             choice = str(input(">")).lower()
             match(choice):
                 case "e":
-                    if(type(Item) in equipableItems):
+                    if(type(Item) in equipableItems and Item not in self.equiptItems.values()):
                         clear()
                         self.equipItem(Item)
-                    elif(type(Item) == fish):
+                    elif(type(Item) == fish or type(Item) == food):
                         self.addHp(Item.hp)
                         self.items.remove(Item)
                         done = True
                     pass
+                case "u":
+                    if( Item  in self.equiptItems.values()):
+                        clear()
+                        self.unequipItem(Item)
+                    
                 case "g":
                     self.dropItem(Item)
                     pass
@@ -216,7 +252,7 @@ class player(creature):
             match(choice):
                 case "y":
                     if(self.equiptItems[itemType] == Item):
-                        self.dict[type(Item)] = None
+                        self.dict[itemType] = None
                     elif Item in self.items:
                         self.items.remove(Item)
                     print("Got rid of ",Item.name)
@@ -265,6 +301,18 @@ class player(creature):
         
         print("Equipped ", Item.name , "in " ,key," slot")
         time.sleep(1.5)
+    def unequipItem(self,Item:item):
+        if Item in self.equiptItems.values():
+            if(type(Item)== weapon):
+                self.equiptItems["weapon"] = None
+            elif(type(Item)== helmet):
+                    self.equiptItems["helmet"] = None
+            elif(type(Item)== fishingRod):
+                self.equiptItems["rod"] = None
+            else:
+                self.equiptItems["armour"] = None
+                
+                
     def showStatus(self):
         clear()
         print(self.name)
@@ -290,12 +338,39 @@ class player(creature):
         print("")
         print("Hp: ",self.hp," / ",self.maxHp)
         print("Xp: ",self.xp," / ",self.xpToNextLevel)
+        print("Total xp earned: ",self.totalXp)
+        print("Current Level: ",str(self.level))
         print("")
         print("Atk: ",self.attack)
         print("Def: ",self.defense)
+        print("")
+        print("Gold: ",self.gold)
         print("Press a enter to return")
         input("")
         return()
+    def calcScore(self)->int:
+        score = 0 
+        score += self.totalXp + self.level 
+        noCreatures = 0
+        for key in self.creaturesKilled.keys():
+            noCreatures += self.creaturesKilled[key]
+        score += noCreatures *10 
+        score += self.gold 
+        for item in self.items:
+            score+= item.value 
+        
+        score += self.swordFrags * 1000 
+        if self.madeSword:
+            score += 5000
+        return(score)
+    def hasCampFire(self)->bool:
+        returnVal = False 
+        for item in self.items:
+            if item.name == "Campfire":
+                returnVal = True 
+                break 
+        
+        return(returnVal)
     def showEquipItems(self):
             clear()
             print("===",self.name,"'s equip items===")
@@ -313,7 +388,12 @@ class player(creature):
                 print("Weapon:  ",self.equiptItems["weapon"].name)
             except:
                 print("Weapon:  ",self.equiptItems["weapon"])
+                
+            try:
+                print("Rod:  ",self.equiptItems["rod"].name)
+            except:
+                print("Rod:  ",self.equiptItems["rod"])
             
         
-            input("Press space to return")
+            input("Press enter to return")
             return()   

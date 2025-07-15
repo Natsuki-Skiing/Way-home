@@ -1,72 +1,56 @@
 [
   {
     "type": "FishingRod",
-    "class": 1,
-    "name": "Broken Stick",
-    "value": 0,
-    "description": "A makeshift fishing rod fashioned from a broken branch and some old string. More likely to catch disappointment than fish."
+    "class": 2,
+    "name": "Stick with string",
+    "value": 8,
+    "distMod": 0.2,
+    "maxCondition": 3,
+    "description": "Literally just a branch with a string tied to the end \u2014 not too effective."
   },
   {
     "type": "FishingRod",
-    "class": 2,
-    "name": "Crude Wooden Rod",
-    "value": 3,
-    "description": "A simple rod carved from river willow. The line is rough hemp rope and the hook is bent iron. It works, barely."
+    "class": 1,
+    "name": "Sting with a hook ",
+    "value": 5,
+    "distMod": 0.0,
+    "maxCondition": 5,
+    "description": "Cheap and ineffective fishing method. Doesn't really provide anything apart from the most basic entry to fishing"
   },
   {
     "type": "FishingRod",
     "class": 3,
-    "name": "Peasant's Fishing Pole",
-    "value": 8,
-    "description": "A basic but functional fishing rod used by common folk. Made from seasoned oak with a proper fishing line and iron hook."
+    "name": "Ruined Angler",
+    "value": 12,
+    "distMod": 0.3,
+    "maxCondition": 4,
+    "description": "Old and battered this rod hasn't got long left"
   },
   {
     "type": "FishingRod",
     "class": 4,
-    "name": "Angler's Rod",
-    "value": 20,
-    "description": "A well-crafted fishing rod with a flexible tip and smooth reel. Favored by professional fishermen and those who take their angling seriously."
+    "name": "Wooden spear",
+    "value": 15,
+    "distMod": 0.4,
+    "maxCondition": 4,
+    "description": "A crudley made fishing spear"
   },
   {
     "type": "FishingRod",
     "class": 5,
-    "name": "Master Fisher's Rod",
-    "value": 50,
-    "description": "An expertly crafted rod made from rare swamp reed and reinforced with metal guides. The balance is perfect and the line flows smoothly."
+    "name": "Bronze Head Spear",
+    "value": 17,
+    "distMod": 0.4,
+    "maxCondition": 6,
+    "description": "A fishing spear with a hammered bronze head, should impoved durablitiy"
   },
   {
     "type": "FishingRod",
-    "class": 6,
-    "name": "Enchanted Angler",
-    "value": 120,
-    "description": "A magical fishing rod that glows softly in the presence of fish. The enchanted line never tangles and the hook seems to attract fish of its own accord."
-  },
-  {
-    "type": "FishingRod",
-    "class": 7,
-    "name": "Rod of the Deep",
-    "value": 250,
-    "description": "Carved from kraken bone and strung with mermaid hair. This rod can reach incredible depths and catch creatures that dwell in the deepest trenches."
-  },
-  {
-    "type": "FishingRod",
-    "class": 8,
-    "name": "Celestial Fishing Rod",
-    "value": 500,
-    "description": "Forged from starfall metal and blessed by sea spirits. The line can extend infinitely and the hook can catch creatures from other planes of existence."
-  },
-  {
-    "type": "FishingRod",
-    "class": 9,
-    "name": "Leviathan's Bane",
-    "value": 1000,
-    "description": "A legendary rod capable of hooking the greatest sea monsters. The line is woven from dragon tendon and the hook is carved from a god's fang. Few dare to use it."
-  },
-  {
-    "type": "FishingRod",
-    "class": 10,
-    "name": "The World-Angler",
-    "value": 2500,
-    "description": "The ultimate fishing rod, said to be able to fish in the void between worlds. It can catch concepts, dreams, and even souls. The most dangerous fishing implement ever created."
+    "class": 5,
+    "name": "Iron Head Spear",
+    "value": 19,
+    "distMod": 0.5,
+    "maxCondition": 8,
+    "description": "Best fising spear money can buy, some people claim it's a waste of weapon grade iron"
   }
 ]

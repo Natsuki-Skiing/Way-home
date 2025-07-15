@@ -13,7 +13,7 @@ class creatureManager():
             
         for entry in raw:
             
-            self.AllOpps[entry["class"]].append(opp(entry["name"],entry["baseHp"],entry["baseDef"],entry["baseAttack"])) 
+            self.AllOpps[entry["class"]].append(opp(entry["name"],entry["baseHp"],entry["baseDef"],entry["baseAttack"],entry["class"])) 
     def getOpp(self,Oppclass:int,OppLevel:int)->opp:
         baseOpp =  copy.deepcopy(random.choice(self.AllOpps[Oppclass]))
         baseOpp.scaleForLevel(OppLevel)

@@ -8,6 +8,7 @@ from selectMenu import *
 from ascii import *
 from clear import *
 from tradingMenu import *
+from repairMenu import *
 townNames = [
     # -ton / -ham
     "Wyrmton", "Aelricton", "Dunham", "Eastmereton", "Brambleton",
@@ -40,24 +41,29 @@ class town:
         self.ItemManger = ItemManager 
         self.name = random.choice(townNames) 
         self.Smithy = blackSmith(0,self.ItemManger)
-        
+        self.Hunts = hunts(0,self.ItemManger)
         self.Grocer = grocer(0,self.ItemManger)
         self.ascii = ascii()
         self.Player = None
-        self.menu =  arrowMenu(["Black Smith","Grocer","Leave Town"],4)
-        
+        self.menu =  arrowMenu(["Black Smith","Grocer","Woodsman","Leave Town"],6)
+        self.Smithy.generateInventory(1)
+        self.Grocer.generateInventory(1)
+        self.Hunts.generateInventory(1)
     def townMainLoop(self,currentTime:list[int],Player:player):
         self.townWin = Window(0,8,20,5,"Town Services")
         self.Player = Player
-        if ((currentTime[0]*24) + currentTime[1] + (currentTime[2]/60) ) - self.lastUpdate >= 36.0 or self.lastUpdate == 0:
+        if (currentTime[0]-self.lastUpdate >=1 ):
             # Updating the vendors item lists 
             self.Smithy.generateInventory(Player.level)
             self.Grocer.generateInventory(Player.level)
+            self.Hunts.generateInventory(Player.level)
+            self.lastUpdate = currentTime[0]
             
             
         running = True 
         self.mainMenu()
         return()
+    
     def mainMenu(self):
         
         running = True 
@@ -72,8 +78,27 @@ class town:
             match(selected):
                 case 0:
                     #blackSmith
-                    clear()
-                    TradMen = tradingMenu(self.Player,self.Smithy)
+                    
+                    while True:
+                        clear()
+                        print("What service would you like?")
+                        print("0: Trade")
+                        print("1: Repair Equiptment")
+                        print("2: Enhance Equiptment")
+                        try:
+                            choice = int(input(">"))
+                        except:
+                            if(choice.lower() == "b"):
+                                break
+                            else:
+                                continue
+                        
+                        if choice == 0 :
+                            TradMen = tradingMenu(self.Player,self.Smithy)
+                            break 
+                        elif choice ==1 :
+                            repWin = repairWindow(self.Player)
+                            break
                     self.drawMenu()
                     
                 case 1: 
@@ -81,8 +106,11 @@ class town:
                     # Copy the grocer's menu here 
                     TradMen = tradingMenu(self.Player,self.Grocer)
                     self.drawMenu()
-                    pass 
+                    pass
                 case 2:
+                    TradMen = tradingMenu(self.Player,self.Hunts)
+                    self.drawMenu()
+                case 3:
                     running = False
          
     def drawMenu(self):

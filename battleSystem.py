@@ -12,7 +12,8 @@ from creatureManager import *
 from selectMenu import *
 import math 
 from items import *
-
+from ascii import *
+from printAt import *
 class itemWindow(Window):
     def __init__(self, x, y, w, h,playerItems:list):
         super().__init__(x, y, w, h, "Consumables")
@@ -32,6 +33,8 @@ class itemWindow(Window):
                 if selected >= 0: 
                     #index = self.menu.selected
                     return(self.items[selected])
+                else:
+                    return(selected)
         
 class logWin(Window):
     def __init__(self, x, y, w, h, name=None):
@@ -70,6 +73,18 @@ class battleWindow(Window):
         rows = ["",self.bar.render(),"Hp: "+str(self.target.hp)+" / "+str(self.target.maxHp),"","Level: "+str(self.target.level)]
         self.row_draw(rows)
         pass
+    
+class playerWindow(battleWindow):
+    def __init__(self, x, y, w, h, target:player):
+        super().__init__(x, y, w, h, target)
+        self.update()
+    def update(self):
+        super().update()
+        weapon = self.target.equiptItems["weapon"] 
+        if weapon != None:
+            
+            rows =["",("Weapon Condition: "+str(weapon.condition))+" / "+str(weapon.maxCondition)]
+            self.row_draw(rows,startY=5)
 class battleSystem:
     def __init__(self,Player:player,creatureMan:creatureManager,distanceFromStart:int,run:bool = True):
         clear()
@@ -82,7 +97,7 @@ class battleSystem:
         
         self.titleWin = Window(0,0,50,1)
         self.oppWin = battleWindow(0,self.titleWin.h+2,self.titleWin.w,5,self.opp)
-        self.playerWin = battleWindow(0,self.oppWin.h+self.titleWin.h+4,self.titleWin.w,5,Player)
+        self.playerWin = playerWindow(0,self.oppWin.h+self.titleWin.h+4,self.titleWin.w,7,Player)
         self.titleWin.draw_text(17,0,"ENEMY ENCOUNTER")
         self.oppBar = healthBar(self.opp,20)
         self.oppMissMsg = ["Thanks the gods!","You were too swift","Close Shave!","The strike finds nothing but air","Their effort ends in vain","Nice one"]
@@ -107,19 +122,21 @@ class battleSystem:
         
         self.mainLoop(playerFirst)
     def getCreature(self,creatureMan:creatureManager,distanceFromStart:int)->opp:
-        if self.player.level < 5:
-            self.oppClass = random.randint(1,2)
+        if self.player.level <= 3:
+            classWeight = [4,2,1,0,0,0,0,0,0,0]
+        elif self.player.level < 5:
+            classWeight = [3,2,1,1,0,0,0,0,0,0]
         elif self.player.level < 10:
-            self.oppClass = random.randint(1,3)
+            classWeight = [1,2,3,2,0,0,0,0,0,0]
         elif self.player.level <20:
-            self.oppClass = random.randint(1,7)
+            classWeight = [0,0,1,2,3,2,0,0,0,0]
         else :
-            self.oppClass = random.randint(1,10)
+            classWeight = [0,1,2,3,4,5,7,5,1,1]
         if self.run:
             level = int(self.calcCreatureLevel(distanceFromStart))
         else:
             level = int(self.calcCreatureLevel(distanceFromStart)*1.65)
-            
+        self.oppClass = random.choices([1,2,3,4,5,6,7,8,9,10],weights=classWeight,k=1)[0]
         Creature = creatureMan.getOpp(self.oppClass,level)
         return(Creature)
     def calcCreatureLevel(self,distance:int)->float:
@@ -146,14 +163,22 @@ class battleSystem:
                     # Menu for consumables 
                     if(any(isinstance(item, (fish,potion)) for item in self.player.items)):
                         running = False
+                        signifierY = self.actionWin.y+self.actionWin.h+4
+                        printAt(0,signifierY,"Close item menu: b")
                         itemWin = itemWindow(self.battleLog.x+self.battleLog.w+2,0,20,self.battleLog.h,self.player.items)
                         Item = itemWin.mainLoop()
-                        self.battleLog.addMsg(self.player.name+" uses "+Item.name )
+                        
                         if type(Item) == fish:
+                            self.battleLog.addMsg(self.player.name+" uses "+Item.name )
                             self.battleLog.addMsg(self.player.name+" gains "+str(Item.hp)+" hp")
                             self.player.addHp(Item.hp)
-                        self.player.items.remove(Item)
-                        itemWin.remove()
+                            self.player.items.remove(Item)
+                            printAt(0,signifierY,"                   ")
+                            itemWin.remove()
+                        elif type(Item)== int:
+                            if Item == -6:
+                                printAt(0,signifierY,"                   ")
+                                itemWin.remove()
                     else:
                         self.battleLog.addMsg("No consumables in inv")
                     #self.state ="main"
@@ -205,6 +230,8 @@ class battleSystem:
             self.battleLog.addMsg("It missed!")
             self.battleLog.addMsg(random.choice(self.oppMissMsg))
     def mainLoop(self,playersTurn):
+        #DEBUG 
+        #playersTurn = True
         running = True
         while running:
             if playersTurn:
@@ -235,15 +262,20 @@ class battleSystem:
             self.playerWin.update()
             if(self.player.hp<=0):
                 #TODO 
-                #Player is dead not sure what to do rn
+                self.gameOver()
                 pass
             elif(self.opp.hp <=0):
                 #opp is dead 
                 # calculate the xp for the player 
+                if self.opp.name in self.player.creaturesKilled.keys():
+                    self.player.creaturesKilled[self.opp.name] += 1
+                    
+                else:
+                    self.player.creaturesKilled[self.opp.name] = 1 
                 xp = self.genXp()
                 self.battleLog.addMsg("You killed the "+self.opp.name)
-                if(random.randint(0,2)==0):
-                    gold = random.randint(1,5)
+                if(random.randint(0,4)<=3):
+                    gold = random.randint(1,6)
                     self.battleLog.addMsg("Picked up "+str(gold)+" gold")
                     self.player.gold += gold
                 self.battleLog.addMsg("Gained "+str(xp)+" Xp")
@@ -259,7 +291,7 @@ class battleSystem:
         lvl_e = self.opp.level
 
         # Base XP is proportional to the enemy's level
-        base_xp = (lvl_e * 10)
+        base_xp = (lvl_e * 10)+self.oppClass
 
         # Positive diff = harder fight -> bonus XP; negative = easier -> reduced XP
         diff = lvl_e - lvl_p
@@ -317,14 +349,35 @@ class battleSystem:
             
             self.battleLog.addMsg("You Missed the " + self.opp.name)
         pass
+    def damageWeapon(self,value:int):
+        self.player.equiptItems["weapon"].reduceCondtion(value)
+        if (self.player.equiptItems["weapon"].condition ==0):
+            temp = self.player.equiptItems["weapon"]
+            self.player.unequipItem(temp)
+            self.player.items.append(temp)
+            self.battleLog.addMsg("Weapon is broken")
+            self.battleLog.addMsg("Now using bare hands")
     def attack(self,head = False):
+        
         Weapon = self.player.equiptItems["weapon"]
         
+        
         if(head):
-            damage = (int(Weapon.damage*2)+self.player.attack) - self.opp.defense
+            if Weapon == None:
+                damage = int(self.player.attack*1.5) - self.opp.defense
+            else:
+                
+                damage = (int(Weapon.damage*1.5)+self.player.attack) - self.opp.defense
+                value = 1
+                if(bool(random.randint(0,1))):
+                    value = 2 
+                self.damageWeapon(value)
             
-        else:
+        elif Weapon != None:
             damage = (Weapon.damage+self.player.attack) - self.opp.defense
+            self.damageWeapon(1)
+        else:
+            damage = self.player.attack - self.opp.defense
         
         if(damage >= 0):
             self.opp.hp -= damage
@@ -332,8 +385,53 @@ class battleSystem:
             self.battleLog.addMsg(self.getAttackMsg())
         else:
             self.battleLog.addMsg("You failed to hurt the "+self.opp.name) 
+    def gameOver(self):
+        try:
+            os.remove("saves/"+self.player.name+".player")
+            os.remove("saves/"+self.player.name+".world")
+        except:
+            pass
+        clear()
+        Ascii = ascii()
+        Ascii.draw((0,0),"Game Over","red")
+        
+        
+        name = (self.player.name[:25]).center(39)
+        opp = (self.opp.name[:20]).center(26)
+        
+        tomb = f"""                                 _____  _____
+                                <     `/     |
+                                 >          (
+                                |   _     _  |
+                                |  |_) | |_) |
+                                |  | \ | |   |
+                                |            |
+                 ______.______%_|            |__________  _____
+               _/                                       \|     |
+              |{name}<
+              |_____.-._________              ____/|___________|
+                                | Slain by a |
+                                |{opp}|
+                                |            |
+                                |            |
+                                |   _        <
+                                |__/         |
+                                 / `--.      |
+                               %|            |%
+                           |/.%%|          -< @%%%
+                           `\%`@|     v      |@@%@%%
+                         .%%%@@@|%    |    % @@@%%@%%%%
+                    _.%%%%%%@@@@@@%%_/%\_%@@%%@@@@@@@%%%%%%"""
+        printAt(0,12,tomb)
+        printAt(0,38,("Score: "+str(self.player.calcScore())))
+        printAt(0,40,"Press enter to exit game")
+        while True:
+            key = readchar.readkey() 
+            if key ==readchar.key.ENTER :
+                exit()   
             
 #DEBUG          
-# testOpp = opp("Ill Rat",5,10,5,2)
+# testOpp = creatureManager("Creatures","OverWorld")
 # testPlayer = player("Joe Biden")
-# testBattle = battleSystem(testPlayer,testOpp)
+# testBattle = battleSystem(testPlayer,testOpp,5)
+# testBattle.gameOver()

@@ -80,14 +80,14 @@
     "name": "Wererat",
     "class": 2,
     "baseHp": 12,
-    "baseDef": 12,
+    "baseDef": 11,
     "baseAttack": 9
   },
   {
     "name": "Goat",
     "class": 2,
     "baseHp": 15,
-    "baseDef": 25,
+    "baseDef": 13,
     "baseAttack": 5
   },
   {
@@ -101,22 +101,22 @@
     "name": "Coyote",
     "class": 2,
     "baseHp": 10,
-    "baseDef": 20,
-    "baseAttack": 17
+    "baseDef": 15,
+    "baseAttack": 13
   },
   {
     "name": "Capybara",
     "class": 2,
-    "baseHp": 6,
+    "baseHp": 4,
     "baseDef": 20,
-    "baseAttack": 9
+    "baseAttack": 5
   },
   {
     "name": "Wild Boar",
     "class": 2,
     "baseHp": 14,
-    "baseDef": 18,
-    "baseAttack": 12
+    "baseDef": 13,
+    "baseAttack": 7
   },
   {
     "name": "Hungry Ghoul",
@@ -129,23 +129,17 @@
     "name": "Desperate Beggar",
     "class": 2,
     "baseHp": 10,
-    "baseDef": 14,
+    "baseDef": 9,
     "baseAttack": 10
   },
   {
     "name": "Feral Cat",
     "class": 2,
     "baseHp": 8,
-    "baseDef": 16,
+    "baseDef": 6,
     "baseAttack": 11
   },
-  {
-    "name": "Tomb Beetle",
-    "class": 2,
-    "baseHp": 12,
-    "baseDef": 20,
-    "baseAttack": 8
-  },
+
   {
     "name": "Dwarf Outcast",
     "class": 2,

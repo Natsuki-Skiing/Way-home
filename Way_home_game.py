@@ -1,48 +1,12 @@
 import os
 
 from clear import clear
-hasReadChar = False 
-hasSound = False
-import sys
-noMusic = ("--noMusic"  in sys.argv)
-#DEBUG 
+import readchar
 
-try:
-    import readchar
-    hasReadChar = True
-    
-except:
-    pass
-if (not noMusic):
-    try:
-        from soundController import *
-        hasSound = True
-    except:
-        pass
-else:
-    hasSound = True
-if(not hasSound or not hasReadChar):
-    clear()
-    print("Way Home")
-    print("===========")
-    print("There are missing requirements:")
-    if(not hasReadChar):
-        print("readchar")
-    if(not hasSound):
-        print("playSound3")
-    print("Would you like me to install them for you? (Module requirements will also be installed) Y/N")
-    choice = input(">").lower()
-    
-    if(choice == "y"):
-        if(not hasReadChar):
-            os.system("pip3 install readchar")
-            import readchar
-        if(not hasSound and not noMusic):
-                os.system("pip3 install playsound3")
-                from soundController import *
-    else:
-        print("Please install the required modules")
-        exit()
+import sys
+noMusic = ('--noMusic'  in sys.argv)
+print(sys.argv)
+import readchar
 from healthBar import healthBar
 from creature import creature
 from window import Window
@@ -53,7 +17,8 @@ import platform
 import time
 import random
 import pickle
-
+if not noMusic:
+    from soundController import *
 from opp import opp
 from battleSystem import battleSystem
 from clock import clock
@@ -64,18 +29,16 @@ from town import *
 from dungeon import *
 from creatureManager import *
 from mapClasses import *
+from fishing import *
 
 
 
 
 
-worldPickables = [fish("Apple",1,"A healthy snack",2,4),fish("Fist of blackberries",2,"A small pile of blackberries",2,4),fish("Money",0,"",0,0),fish("Thornnut",1,"A decent sized groved hard shell nut. Prized by Dwarvern miners and Men for its energy and resitance to spoiling",2,50),fish("Foul Root",3,"A black hard root. It is used by the penentry to heal the size as they can scarcely afford better medicine. It's name is deserved",10,10)]
+worldPickables = [food("Apple",1,"A healthy snack",2,4),food("Fist of blackberries",2,"A small pile of blackberries",2,4),food("Money",0,"",0,0),food("Thornnut",1,"A decent sized groved hard shell nut. Prized by Dwarvern miners and Men for its energy and resitance to spoiling",2,50),food("Foul Root",3,"A black hard root. It is used by the penentry to heal the size as they can scarcely afford better medicine. It's name is deserved",10,10)]
 worldPickablesWeight = [5,5,1,4,3]
 
-worldFish = [fish("ᛋᚪᛗ ᚻᛁᛞᛖ",7,"Large ugly fish plentyful in the cold lands of the North East.People have to desire to name it in the common tounge, they only care for it's good taste",25,8),
-             fish("Forgorth's Delight",4,"As he sat on the Starsteel Throne, Forgorth commanded great quantities of this fish. The original name is forgotten",10,3),
-             fish("Narflyn",1,"Small silver fish with a bright emarld tint. Eaten by many.Some people of the northern mountains have gods in it's image, as it alone carried them the the cold of dark times",6,8),
-             fish("Therkain",2,"Only thing faster than this fish is the speed at which it is eaten.",6,8)]
+
 
         
         
@@ -315,21 +278,27 @@ class WayHome:
         clear()
         self.Menu = mainMenu()
         
-        if(not noMusic):
+        if not noMusic:
+            
             self.MusicPlayer = musicPlayer("music/")
             self.MusicPlayer.start()
         load = self.Menu.main()
         self.World = None 
         self.Player = None
         self.autoRun = False
+        self.itemManager = itemManager("items")
+        self.CrManOver = creatureManager("Creatures","OverWorld")
+        self.CrManDun = creatureManager("Creatures","Dungeon")
         self.pauseMenu = pauseMenu()
         
         if(load):
             #There is already as saved game player wants to load
             if(not self.loadGame(load)):
                 print("Error Loading game from File")
-                
-            
+            self.statWin = statWin((2+x),0,30,y-9,self.Player.name,self.World.currentMap,self.Player,self.World.GClock.GetFullTime())
+            self.intWin = interWin(x+2,(self.statWin.h+2),self.statWin.w,(y-self.statWin.h-2),"Actions")
+            self.logWin = logWin(0,y+2,x+self.statWin.w+2,7,"Events Log")   
+            self.World.Window.draw()
         else:
             clear()
             print("New game")
@@ -341,22 +310,20 @@ class WayHome:
             clear()
             self.Player = player(name)
             self.World = world(x,y)
-            self.GClock = clock()
-            self.statWin = statWin((2+x),0,30,y-9,name,self.World.currentMap,self.Player,self.GClock.GetFullTime())
+            
+            self.statWin = statWin((2+x),0,30,y-9,name,self.World.currentMap,self.Player,self.World.GClock.GetFullTime())
             self.intWin = interWin(x+2,(self.statWin.h+2),self.statWin.w,(y-self.statWin.h-2),"Actions")
             self.logWin = logWin(0,y+2,x+self.statWin.w+2,7,"Events Log")
-            #used for town and dungeon chance generation
-            self.sinceTown = 0
-            self.sinceDun =0
+            
             #Init player inventory play stuff
-            self.Player.items.append(weapon("Kitchen Fork",10,1,1,"A kitchen fork, not a fancy one. Is made from steel. Handle has some rust on it, probbaly reduces the value"))
+            self.Player.items.append(weapon("Kitchen Fork",4,35,1,"A kitchen fork, not a fancy one. Is made from steel. Handle has some rust on it, probbaly reduces the value"))
             self.Player.items.append(armour("Raggy top",1,3,"A raggy smelly top. Has more holes than not."))
-            self.Player.items.append(fish("Apple",1,"A healthy snack",2,4))
+            self.Player.items.append(food("Apple",1,"A healthy snack",2,4))
             self.Player.equiptItems["weapon"] = self.Player.items[0]
             self.Player.equiptItems["armour"] = self.Player.items[1]
-            self.itemManager = itemManager("items")
-            self.CrManOver = creatureManager("Creatures","OverWorld")
-            self.CrManDun = creatureManager("Creatures","Dungeon")
+            self.World.maps[(0,0)] = map(self.World.mapX,self.World.mapY,True,True,town= town(self.itemManager),Dungeon=self.makeDungeon())
+            self.Player.x ,self.Player.y = (0,0)
+            
             self.saveGame()
             #start a new game
             pass
@@ -389,7 +356,7 @@ class WayHome:
         #TODO
         # Probbaly need to come up with a better system
         if(not self.autoRun):
-            if(random.randint(0,8) ==1):
+            if(random.randint(0,12) ==1):
                 
                 
                 battleSystem(self.Player,self.CrManOver,self.calcDist())
@@ -404,8 +371,7 @@ class WayHome:
         #DEBUG
         #self.Player.items.append(fishingRod("Test Rod",-1,"Testing"))
         #END
-        self.World.maps[(0,0)] = map(self.World.mapX,self.World.mapY,True,True,town= town(self.itemManager),Dungeon=self.makeDungeon())
-        self.Player.x ,self.Player.y = (0,0)
+        
         self.World.placePlayer(self.Player.x, self.Player.y)
         self.World.drawCurrentMap()
         running = True
@@ -413,8 +379,11 @@ class WayHome:
         # Setup for terminal control
         print("\033[?25l")  # Hide cursor
         clockCount = 1
-        lastDay = self.GClock.day
+        lastDay = self.World.GClock.day
         nextToWater = False
+        gatherUpdate = False
+        campUpdate = False
+        hasCampfire = False
         while(running):
             key = readchar.readkey()
             update = 0
@@ -456,32 +425,50 @@ class WayHome:
                         print("Game Saved!")
                         time.sleep(1.5)
                 case 't':
-                    if(self.World.tileSwap == townTile):
+                    if(self.World.tileSwap == townTile or self.World.tileSwap.tile == "T"):
                         update = 2 
-                        self.World.maps[self.World.currentMap].town.townMainLoop(self.GClock.GetFullTime(),self.Player)        
+                        self.World.maps[self.World.currentMap].town.townMainLoop(self.World.GClock.GetFullTime(),self.Player)
+                        hasCampfire = self.Player.hasCampFire()
+                case 'c':
+                    #place 
+                    if hasCampfire and self.World.placeCampfire(self.Player.x,self.Player.y):
+                        self.logWin.addMsg(("Placed campfire at "+str(self.Player.x)+", "+str(self.Player.y)))
+                        hasCampfire = self.Player.hasCampFire()
+                    elif hasCampfire:
+                        self.logWin.addMsg("Cannot place campfire at this location")
+                    elif self.World.tileSwap == campsiteTile:
+                        # enter campsite
+                        #TODO make campsite logic
+                        pass 
+                    
                 case 'f':
                     # Will be able to fish
-                    rod = None
+                    
                     if(nextToWater):
-                        if("rod" in self.Player.equiptItems.keys()):
-                            rod = self.Player.equiptItems["rod"]
-                        else:
-                            for item in self.Player.items:
-                                if type(item) == fishingRod:
-                                    rod = item 
-                        
-                        if (rod != None):
-                            # Fishing stuff 
-                            pass
+                        if (self.Player.equiptItems["rod"] != None):
+                            if(self.Player.equiptItems["rod"].condition >0):
+                                fishGame = fishingGame(self.Player,self.itemManager)
+                                fish = fishGame.mainLoop()
+                                if fish != None:
+                                    self.logWin.addMsg(("You caught a "+fish.name))
+                                    self.logWin.addMsg(random.choice(["Impressive!","It's not a big one","That's an impressive fish", "Nothing of note","Nice one","I'm sure it'll taste great","Sick"]))
+                                    self.Player.items.append(fish)
+                                    #TODO add a message for when a rod breaks
+                                else:
+                                    self.logWin.addMsg(random.choice(["You failed to catch a fish","You caught a fish , but it got away"," All the fish skillfully evaded your hook","You caught nothing"]))
+                                update = 2
+                            else:
+                                self.logWin.addMsg("Can't use a broken fishing rod")
+                                update = 1
                         else:
                             
                             self.logWin.addMsg("Need to equip a fishing rod")
                             update = 1
                 case 'd':
-                    if(self.World.tileSwap == dungeonTile and self.World.maps[self.World.currentMap].hasDungeon):
+                    if((self.World.tileSwap == dungeonTile or  self.World.tileSwap.tile == "D") and self.World.maps[self.World.currentMap].hasDungeon):
                         x,y = self.Player.x ,self.Player.y
                         update = 2 
-                        self.World.maps[self.World.currentMap].Dungeon.mainLoop(self.GClock)
+                        self.World.maps[self.World.currentMap].Dungeon.mainLoop(self.World.GClock)
                         self.Player.x , self.Player.y = x ,y         
                 case 'g':
                     try:
@@ -489,7 +476,7 @@ class WayHome:
                         if(type(self.World.maps[self.World.currentMap].tiles[(self.Player.x, self.Player.y)]) == type(foodTree)):
                             self.World.tileSwap = shrub
                             # setting the time it was last picked
-                            self.World.maps[self.World.currentMap].shrubTimerDict[(self.Player.x,self.Player.y)] = [self.GClock.day,self.World.maps[self.World.currentMap].shrubTimerDict[(self.Player.x,self.Player.y)]][1]
+                            self.World.maps[self.World.currentMap].shrubTimerDict[(self.Player.x,self.Player.y)] = [self.World.GClock.day,self.World.maps[self.World.currentMap].shrubTimerDict[(self.Player.x,self.Player.y)]][1]
                             picked = random.choices(worldPickables, weights=worldPickablesWeight, k=1)[0]
                             
                             if(picked.name == "Money"):
@@ -521,8 +508,8 @@ class WayHome:
             # Clock stuff kinda expensive i guess 
             # I  dont want to run it every iteration so runs every 2 ig
             if(clockCount == 1):
-                self.GClock.update() 
-                newTime = self.GClock.GetFullTime()
+                self.World.GClock.update() 
+                newTime = self.World.GClock.GetFullTime()
                 self.statWin.updateSetTime(newTime) 
                 difDay = lastDay - newTime[0]
                 if(difDay >0):
@@ -560,7 +547,11 @@ class WayHome:
                 
                 
                 # Show context-sensitive actions
-                if self.World.tileSwap == dungeonTile:
+                if self.World.tileSwap.tile == "C" or hasCampfire:
+                    self.intWin.addAction("(C)ampfire")
+                else:
+                    campUpdate = self.intWin.removeAction("(C)ampfire")
+                if self.World.tileSwap == dungeonTile or self.World.tileSwap.tile == "D":
                     self.intWin.addAction("(D)ungeon")
                 else:
                     dunUpdate = self.intWin.removeAction("(D)ungeon")
@@ -571,7 +562,7 @@ class WayHome:
                 else:
         
                    gatherUpdate = self.intWin.removeAction("(G)ather") 
-                if self.World.tileSwap == townTile:
+                if self.World.tileSwap == townTile or self.World.tileSwap.tile == "T":
                     self.intWin.addAction("(T)own - "+self.World.maps[self.World.currentMap].town.name)
                 else:
                     townUpdate = self.intWin.removeAction("(T)own")
@@ -580,7 +571,7 @@ class WayHome:
                 else:
                     fishUpdate = self.intWin.removeAction("(F)ish")
                 
-                if gatherUpdate or fishUpdate or townUpdate or dunUpdate:
+                if gatherUpdate or fishUpdate or townUpdate or dunUpdate or campUpdate:
                     self.intWin.update()
             #Might no longer need this i dunno 
             #time.sleep(0.1)
@@ -643,20 +634,20 @@ class WayHome:
                 hasDun = False 
                 hasTown = False
                 #Town
-                if (random.randint(0,(7-self.sinceTown))) == 0:
+                if (random.randint(0,(7-self.World.sinceTown))) == 0:
                     hasTown = True
-                    self.sinceTown =0
+                    self.World.sinceTown =0
                 else:
                     hasTown = False
-                    self.sinceTown +=1 
+                    self.World.sinceTown +=1 
                 
                 #Dungeon     
-                if(random.randint(0,(4-self.sinceDun))) == 0:
+                if(random.randint(0,(4-self.World.sinceDun))) == 0:
                     hasDun = True 
-                    self.sinceTown = 0 
+                    self.World.sinceTown = 0 
                 else:
                     hasDun = False 
-                    self.sinceDun +=1
+                    self.World.sinceDun +=1
                 
                 
                 if(hasTown and hasDun):
@@ -676,7 +667,7 @@ class WayHome:
                     for key in self.World.maps[self.World.currentMap].shrubTimerDict.keys():
                         value = self.World.maps[self.World.currentMap].shrubTimerDict[key]
                         if (self.World.maps[self.World.currentMap].shrubTimerDict[key][0] != -1):
-                            if(self.GClock.day - value[0] >= value[1]): 
+                            if(self.World.GClock.day - value[0] >= value[1]): 
                                 value[0] = -1 
                                 self.World.maps[self.World.currentMap].shrubTimerDict[key] = value 
                                 self.World.maps[self.World.currentMap].tiles[(self.Player.x,self.Player.y)] = foodTree

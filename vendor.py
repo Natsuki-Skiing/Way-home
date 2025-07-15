@@ -51,21 +51,47 @@ class vendor:
         
         # Actually getting the items now 
         for key, value in splitDict.items():
-            for _ in range(value):
+            #DEBUG 
+            if key == "campfire":
+                pass
+            i = 0
+            sinceLastItem = 0
+            while i < value:
                 # Don't want the shop keepers to have items worth nothing 
-                tempItem = self.itemManager.getItem(key,self.classFromLevel(playerLevel),random.randint(itemLevelRange[0],itemLevelRange[1]))
-                if(tempItem.value >0):
-                    self.items.append(tempItem)
+                try:
+                    #DEBUG
+                    #Trying just random from all item classes 
+                    #tempItem = self.itemManager.getItem(key,self.classFromLevel(playerLevel),random.randint(itemLevelRange[0],itemLevelRange[1]))
+                    tempItem = self.itemManager.getItem(key,random.randint(1,10),random.randint(itemLevelRange[0],itemLevelRange[1]))
+                    if(tempItem.value >0):
+                        self.items.append(tempItem)
+                        i +=1
+                    else:
+                        sinceLastItem +=1
+                except:
+                    sinceLastItem +=1
+                    pass
+                
+                if(sinceLastItem ==10):
+                    i +=1 
+                    sinceLastItem = 0
+                
         
 class blackSmith(vendor):
     def __init__(self, level:int,itemManager:itemManager):
         super().__init__(level,itemManager)
         self.items = self.generateInventory(level)
     def generateInventory(self,playerLevel:int):#DEBUG ["weapon","helmet","armour"]
-        super().generateInventory(random.randint(12,35),["weapon","helmet","armour"],playerLevel) 
+        super().generateInventory(random.randint(12,20),["weapon","helmet","armour"],playerLevel) 
 class grocer(vendor):
     def __init__(self, level:int,itemManager:itemManager):
         super().__init__(level,itemManager)
         self.items = self.generateInventory(level)
     def generateInventory(self,playerLevel:int):
-        super().generateInventory(random.randint(12,35),["fish"],playerLevel) 
+        super().generateInventory(random.randint(15,25),["food","fish"],playerLevel)
+        
+class hunts(vendor):
+    def __init__(self, level, itemManager):
+        super().__init__(level, itemManager)
+    def generateInventory(self,  playerLevel):
+        super().generateInventory(random.randint(10,25),["fishingRod","campfire"],playerLevel)

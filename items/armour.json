@@ -78,5 +78,21 @@
     "protection": 150,
     "value": 3000,
     "description": "Forged from the essence of the void itself and tempered in the heart of a dying star. This ultimate armor exists partially outside reality, making its wearer nearly untouchable by mortal weapons."
+  },
+  {
+    "type": "Armour",
+    "class": 10,
+    "name": "Elliot's Dressing Gown",
+    "protection": 200,
+    "value": 10000,
+    "description": "A soft , often smelly , dark blue dressing gown worn by Lord Elliot himself"
+  },
+  {
+    "type": "Armour",
+    "class": 2,
+    "name": "Goblin Bone Armour",
+    "protection": 4,
+    "value": 5,
+    "description": "An improvised chest piece made from bones of various origins bound together. Worn by lower status goblins and other creatures of the like."
   }
 ]

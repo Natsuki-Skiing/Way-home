@@ -3,11 +3,11 @@
     "configurations": [
         {
             "name": "Python: NoMusic (Integrated Terminal)",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
+            "program": "${workspaceFolder}/Way_home_game.py",
             "console": "integratedTerminal",
-            "args": ["--noMusic"]
+            "args": "--noMusic"
         }
     ]
 }

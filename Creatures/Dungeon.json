@@ -2,666 +2,716 @@
   {
     "name": "Rat",
     "class": 1,
-    "baseHp": 8,
-    "baseDef": 9,
-    "baseAttack": 14
+    "baseHp": 6,
+    "baseDef": 7,
+    "baseAttack": 9
   },
   {
     "name": "Ill Rat",
     "class": 1,
-    "baseHp": 5,
-    "baseDef": 7,
-    "baseAttack": 12
+    "baseHp": 3,
+    "baseDef": 5,
+    "baseAttack": 7
   },
   {
     "name": "Giant Centipede",
     "class": 1,
-    "baseHp": 6,
-    "baseDef": 10,
-    "baseAttack": 10
+    "baseHp": 4,
+    "baseDef": 8,
+    "baseAttack": 6
+  },
+  {
+    "name": "Dancing Frog",
+    "class": 1,
+    "baseHp": 2,
+    "baseDef": 7,
+    "baseAttack": 4
   },
   {
     "name": "Beetle",
     "class": 1,
-    "baseHp": 5,
-    "baseDef": 12,
-    "baseAttack": 8
+    "baseHp": 3,
+    "baseDef": 10,
+    "baseAttack": 5
+  },
+  {
+    "name": "Sickly Crow",
+    "class": 1,
+    "baseHp": 2,
+    "baseDef": 5,
+    "baseAttack": 6
+  },
+  {
+    "name": "Spooked Rabbit",
+    "class": 1,
+    "baseHp": 4,
+    "baseDef": 6,
+    "baseAttack": 5
   },
   {
     "name": "Sewer Rat",
     "class": 1,
+    "baseHp": 5,
+    "baseDef": 6,
+    "baseAttack": 7
+  },
+  {
+    "name": "Starving Peasant",
+    "class": 1,
     "baseHp": 7,
     "baseDef": 8,
-    "baseAttack": 11
+    "baseAttack": 6
   },
   {
     "name": "Plague Fly",
     "class": 1,
-    "baseHp": 4,
-    "baseDef": 6,
-    "baseAttack": 12
+    "baseHp": 2,
+    "baseDef": 4,
+    "baseAttack": 8
   },
   {
-    "name": "Zombie Villager",
+    "name": "Wounded Crow",
     "class": 1,
-    "baseHp": 10,
-    "baseDef": 8,
-    "baseAttack": 10
+    "baseHp": 3,
+    "baseDef": 7,
+    "baseAttack": 5
   },
   {
     "name": "Wererat",
     "class": 2,
+    "baseHp": 12,
+    "baseDef": 11,
+    "baseAttack": 9
+  },
+  {
+    "name": "Goat",
+    "class": 2,
     "baseHp": 15,
+    "baseDef": 13,
+    "baseAttack": 5
+  },
+  {
+    "name": "Dog",
+    "class": 2,
+    "baseHp": 6,
+    "baseDef": 20,
+    "baseAttack": 15
+  },
+  {
+    "name": "Coyote",
+    "class": 2,
+    "baseHp": 10,
     "baseDef": 15,
-    "baseAttack": 14
+    "baseAttack": 13
+  },
+  {
+    "name": "Capybara",
+    "class": 2,
+    "baseHp": 4,
+    "baseDef": 20,
+    "baseAttack": 5
+  },
+  {
+    "name": "Wild Boar",
+    "class": 2,
+    "baseHp": 14,
+    "baseDef": 13,
+    "baseAttack": 7
   },
   {
     "name": "Hungry Ghoul",
     "class": 2,
-    "baseHp": 11,
-    "baseDef": 15,
-    "baseAttack": 21
+    "baseHp": 8,
+    "baseDef": 12,
+    "baseAttack": 14
+  },
+  {
+    "name": "Desperate Beggar",
+    "class": 2,
+    "baseHp": 10,
+    "baseDef": 9,
+    "baseAttack": 10
   },
   {
     "name": "Feral Cat",
     "class": 2,
-    "baseHp": 10,
-    "baseDef": 19,
-    "baseAttack": 18
+    "baseHp": 8,
+    "baseDef": 6,
+    "baseAttack": 11
   },
-  {
-    "name": "Tomb Beetle",
-    "class": 2,
-    "baseHp": 15,
-    "baseDef": 23,
-    "baseAttack": 13
-  },
+
   {
     "name": "Dwarf Outcast",
     "class": 2,
-    "baseHp": 19,
-    "baseDef": 21,
-    "baseAttack": 15
-  },
-  {
-    "name": "Cave Bat",
-    "class": 2,
-    "baseHp": 7,
-    "baseDef": 10,
-    "baseAttack": 15
-  },
-  {
-    "name": "Zombie Guard Dog",
-    "class": 2,
-    "baseHp": 12,
+    "baseHp": 16,
     "baseDef": 18,
-    "baseAttack": 17
+    "baseAttack": 9
+  },
+  {
+    "name": "Wolf",
+    "class": 3,
+    "baseHp": 12,
+    "baseDef": 25,
+    "baseAttack": 19
   },
   {
     "name": "Stunted Goblin",
     "class": 3,
-    "baseHp": 13,
-    "baseDef": 21,
-    "baseAttack": 28
+    "baseHp": 10,
+    "baseDef": 18,
+    "baseAttack": 19
+  },
+  {
+    "name": "Enraged Peasant",
+    "class": 3,
+    "baseHp": 15,
+    "baseDef": 25,
+    "baseAttack": 11
   },
   {
     "name": "Bandit",
     "class": 3,
-    "baseHp": 18,
-    "baseDef": 18,
-    "baseAttack": 31
+    "baseHp": 15,
+    "baseDef": 15,
+    "baseAttack": 21
   },
   {
     "name": "Orc Scout",
     "class": 3,
-    "baseHp": 19,
-    "baseDef": 23,
-    "baseAttack": 25
+    "baseHp": 16,
+    "baseDef": 20,
+    "baseAttack": 17
   },
   {
     "name": "Corrupted Hound",
     "class": 3,
-    "baseHp": 16,
-    "baseDef": 20,
-    "baseAttack": 27
+    "baseHp": 13,
+    "baseDef": 17,
+    "baseAttack": 18
   },
   {
     "name": "Hobgoblin",
     "class": 3,
-    "baseHp": 17,
-    "baseDef": 25,
-    "baseAttack": 23
+    "baseHp": 14,
+    "baseDef": 22,
+    "baseAttack": 15
+  },
+  {
+    "name": "Deserter",
+    "class": 3,
+    "baseHp": 18,
+    "baseDef": 20,
+    "baseAttack": 16
+  },
+  {
+    "name": "Wild Hunter",
+    "class": 3,
+    "baseHp": 15,
+    "baseDef": 18,
+    "baseAttack": 18
   },
   {
     "name": "Cursed Hound",
     "class": 3,
-    "baseHp": 14,
-    "baseDef": 19,
-    "baseAttack": 30
+    "baseHp": 11,
+    "baseDef": 16,
+    "baseAttack": 20
   },
   {
     "name": "Skeleton",
     "class": 4,
-    "baseHp": 19,
-    "baseDef": 23,
-    "baseAttack": 28
+    "baseHp": 16,
+    "baseDef": 20,
+    "baseAttack": 19
   },
   {
     "name": "Highwayman",
     "class": 4,
-    "baseHp": 28,
-    "baseDef": 23,
+    "baseHp": 25,
+    "baseDef": 20,
+    "baseAttack": 15
+  },
+  {
+    "name": "Harpy",
+    "class": 4,
+    "baseHp": 22,
+    "baseDef": 15,
     "baseAttack": 23
+  },
+  {
+    "name": "Forest Nymph",
+    "class": 4,
+    "baseHp": 20,
+    "baseDef": 25,
+    "baseAttack": 11
   },
   {
     "name": "Drowner",
     "class": 4,
-    "baseHp": 18,
-    "baseDef": 25,
-    "baseAttack": 28
+    "baseHp": 15,
+    "baseDef": 22,
+    "baseAttack": 19
   },
   {
     "name": "Rotfiend",
     "class": 4,
-    "baseHp": 23,
-    "baseDef": 21,
-    "baseAttack": 31
+    "baseHp": 20,
+    "baseDef": 18,
+    "baseAttack": 21
   },
   {
     "name": "Barghest",
     "class": 4,
-    "baseHp": 27,
-    "baseDef": 23,
-    "baseAttack": 27
+    "baseHp": 24,
+    "baseDef": 20,
+    "baseAttack": 18
   },
   {
     "name": "Sellsword",
     "class": 4,
-    "baseHp": 29,
-    "baseDef": 27,
-    "baseAttack": 25
+    "baseHp": 26,
+    "baseDef": 24,
+    "baseAttack": 17
   },
   {
     "name": "Dwarf Berserker",
     "class": 4,
-    "baseHp": 31,
-    "baseDef": 29,
-    "baseAttack": 28
+    "baseHp": 28,
+    "baseDef": 26,
+    "baseAttack": 19
   },
   {
     "name": "Marsh Stalker",
     "class": 4,
-    "baseHp": 24,
-    "baseDef": 25,
-    "baseAttack": 29
+    "baseHp": 21,
+    "baseDef": 22,
+    "baseAttack": 20
   },
   {
-    "name": "Goblin Shaman",
-    "class": 4,
-    "baseHp": 18,
-    "baseDef": 16,
-    "baseAttack": 32
+    "name": "Uruk-hai",
+    "class": 5,
+    "baseHp": 25,
+    "baseDef": 32,
+    "baseAttack": 20
   },
   {
-    "name": "Zombie Soldier",
-    "class": 4,
+    "name": "Troll Cub",
+    "class": 5,
+    "baseHp": 30,
+    "baseDef": 45,
+    "baseAttack": 23
+  },
+  {
+    "name": "Stone Golem",
+    "class": 5,
+    "baseHp": 50,
+    "baseDef": 70,
+    "baseAttack": 19
+  },
+  {
+    "name": "Soldier",
+    "class": 5,
+    "baseHp": 25,
+    "baseDef": 30,
+    "baseAttack": 17
+  },
+  {
+    "name": "Dwarven Soldier",
+    "class": 5,
+    "baseHp": 25,
+    "baseDef": 34,
+    "baseAttack": 17
+  },
+  {
+    "name": "Apprentice Wizard",
+    "class": 5,
+    "baseHp": 20,
+    "baseDef": 10,
+    "baseAttack": 30
+  },
+  {
+    "name": "Orc Warrior",
+    "class": 5,
+    "baseHp": 28,
+    "baseDef": 28,
+    "baseAttack": 20
+  },
+  {
+    "name": "Necrophage",
+    "class": 5,
     "baseHp": 22,
     "baseDef": 20,
     "baseAttack": 26
   },
   {
-    "name": "Uruk-hai",
-    "class": 5,
-    "baseHp": 28,
-    "baseDef": 35,
-    "baseAttack": 30
-  },
-  {
-    "name": "Troll Cub",
-    "class": 5,
-    "baseHp": 33,
-    "baseDef": 48,
-    "baseAttack": 33
-  },
-  {
-    "name": "Stone Golem",
-    "class": 5,
-    "baseHp": 55,
-    "baseDef": 75,
-    "baseAttack": 28
-  },
-  {
-    "name": "Soldier",
-    "class": 5,
-    "baseHp": 28,
-    "baseDef": 33,
-    "baseAttack": 25
-  },
-  {
-    "name": "Dwarven Soldier",
-    "class": 5,
-    "baseHp": 28,
-    "baseDef": 37,
-    "baseAttack": 26
-  },
-  {
-    "name": "Apprentice Wizard",
-    "class": 5,
-    "baseHp": 23,
-    "baseDef": 13,
-    "baseAttack": 43
-  },
-  {
-    "name": "Orc Warrior",
-    "class": 5,
-    "baseHp": 31,
-    "baseDef": 31,
-    "baseAttack": 29
-  },
-  {
-    "name": "Necrophage",
-    "class": 5,
-    "baseHp": 25,
-    "baseDef": 23,
-    "baseAttack": 38
-  },
-  {
     "name": "Rogue Mage",
     "class": 5,
-    "baseHp": 21,
-    "baseDef": 18,
-    "baseAttack": 41
+    "baseHp": 18,
+    "baseDef": 15,
+    "baseAttack": 29
   },
   {
     "name": "Knight Errant",
     "class": 5,
-    "baseHp": 35,
-    "baseDef": 38,
-    "baseAttack": 27
+    "baseHp": 32,
+    "baseDef": 35,
+    "baseAttack": 18
   },
   {
     "name": "Grave Robber",
     "class": 5,
-    "baseHp": 27,
-    "baseDef": 25,
-    "baseAttack": 35
+    "baseHp": 24,
+    "baseDef": 22,
+    "baseAttack": 24
+  },
+  {
+    "name": "Forest Warden",
+    "class": 5,
+    "baseHp": 26,
+    "baseDef": 28,
+    "baseAttack": 22
   },
   {
     "name": "Fallen Paladin",
     "class": 5,
-    "baseHp": 33,
-    "baseDef": 35,
-    "baseAttack": 31
-  },
-  {
-    "name": "Crypt Keeper",
-    "class": 5,
-    "baseHp": 25,
-    "baseDef": 30,
-    "baseAttack": 30
-  },
-  {
-    "name": "Zombie Knight",
-    "class": 5,
     "baseHp": 30,
-    "baseDef": 30,
-    "baseAttack": 28
+    "baseDef": 32,
+    "baseAttack": 21
   },
   {
     "name": "Shadow Serpent",
     "class": 6,
-    "baseHp": 43,
-    "baseDef": 33,
-    "baseAttack": 53
+    "baseHp": 40,
+    "baseDef": 30,
+    "baseAttack": 50
+  },
+  {
+    "name": "Samuri",
+    "class": 6,
+    "baseHp": 30,
+    "baseDef": 30,
+    "baseAttack": 29
   },
   {
     "name": "Lamia",
     "class": 6,
-    "baseHp": 38,
-    "baseDef": 23,
-    "baseAttack": 43
+    "baseHp": 35,
+    "baseDef": 20,
+    "baseAttack": 40
+  },
+  {
+    "name": "Centaur",
+    "class": 6,
+    "baseHp": 45,
+    "baseDef": 35,
+    "baseAttack": 45
+  },
+  {
+    "name": "Dryad",
+    "class": 6,
+    "baseHp": 32,
+    "baseDef": 25,
+    "baseAttack": 38
   },
   {
     "name": "Basilisk",
     "class": 6,
-    "baseHp": 41,
-    "baseDef": 38,
-    "baseAttack": 45
-  },
-  {
-    "name": "Nazgul Wraith",
-    "class": 6,
     "baseHp": 38,
-    "baseDef": 33,
-    "baseAttack": 48
-  },
-  {
-    "name": "Witch Hunter",
-    "class": 6,
-    "baseHp": 41,
-    "baseDef": 35,
-    "baseAttack": 43
-  },
-  {
-    "name": "Death Knight",
-    "class": 6,
-    "baseHp": 45,
-    "baseDef": 41,
-    "baseAttack": 41
-  },
-  {
-    "name": "Corrupted Druid",
-    "class": 6,
-    "baseHp": 37,
-    "baseDef": 31,
-    "baseAttack": 49
-  },
-  {
-    "name": "Dwarf Cleric",
-    "class": 6,
-    "baseHp": 43,
-    "baseDef": 39,
-    "baseAttack": 39
-  },
-  {
-    "name": "Minotaur",
-    "class": 6,
-    "baseHp": 40,
     "baseDef": 35,
     "baseAttack": 42
   },
   {
-    "name": "Zombie Ogre",
+    "name": "Nazgul Wraith",
     "class": 6,
-    "baseHp": 50,
+    "baseHp": 35,
+    "baseDef": 30,
+    "baseAttack": 45
+  },
+  {
+    "name": "Witch Hunter",
+    "class": 6,
+    "baseHp": 38,
+    "baseDef": 32,
+    "baseAttack": 40
+  },
+  {
+    "name": "Death Knight",
+    "class": 6,
+    "baseHp": 42,
+    "baseDef": 38,
+    "baseAttack": 38
+  },
+  {
+    "name": "Corrupted Druid",
+    "class": 6,
+    "baseHp": 34,
     "baseDef": 28,
-    "baseAttack": 35
+    "baseAttack": 46
+  },
+  {
+    "name": "Dwarf Cleric",
+    "class": 6,
+    "baseHp": 40,
+    "baseDef": 36,
+    "baseAttack": 36
   },
   {
     "name": "Werewolf",
     "class": 7,
-    "baseHp": 43,
-    "baseDef": 40,
-    "baseAttack": 48
+    "baseHp": 40,
+    "baseDef": 37,
+    "baseAttack": 45
   },
   {
     "name": "Ogre",
     "class": 7,
-    "baseHp": 85,
-    "baseDef": 33,
-    "baseAttack": 33
+    "baseHp": 80,
+    "baseDef": 30,
+    "baseAttack": 30
   },
   {
     "name": "Dire Wolf",
     "class": 7,
-    "baseHp": 58,
-    "baseDef": 48,
-    "baseAttack": 58
+    "baseHp": 55,
+    "baseDef": 45,
+    "baseAttack": 55
+  },
+  {
+    "name": "Bear",
+    "class": 7,
+    "baseHp": 45,
+    "baseDef": 40,
+    "baseAttack": 45
   },
   {
     "name": "Cave Troll",
     "class": 7,
-    "baseHp": 70,
-    "baseDef": 53,
-    "baseAttack": 41
+    "baseHp": 65,
+    "baseDef": 50,
+    "baseAttack": 38
   },
   {
     "name": "Fiend",
     "class": 7,
-    "baseHp": 53,
-    "baseDef": 38,
-    "baseAttack": 55
+    "baseHp": 50,
+    "baseDef": 35,
+    "baseAttack": 52
   },
   {
     "name": "Frost Giant",
     "class": 7,
-    "baseHp": 65,
-    "baseDef": 48,
-    "baseAttack": 51
+    "baseHp": 60,
+    "baseDef": 45,
+    "baseAttack": 48
   },
   {
     "name": "Warlord",
     "class": 7,
-    "baseHp": 55,
-    "baseDef": 45,
-    "baseAttack": 53
+    "baseHp": 52,
+    "baseDef": 42,
+    "baseAttack": 50
   },
   {
     "name": "Demon Hunter",
     "class": 7,
-    "baseHp": 51,
-    "baseDef": 41,
-    "baseAttack": 59
+    "baseHp": 48,
+    "baseDef": 38,
+    "baseAttack": 56
   },
   {
     "name": "Ancient Lich",
     "class": 7,
-    "baseHp": 48,
-    "baseDef": 38,
-    "baseAttack": 61
+    "baseHp": 45,
+    "baseDef": 35,
+    "baseAttack": 58
   },
   {
     "name": "Corrupted Champion",
     "class": 7,
-    "baseHp": 59,
-    "baseDef": 51,
-    "baseAttack": 49
-  },
-  {
-    "name": "Goblin King",
-    "class": 7,
-    "baseHp": 50,
-    "baseDef": 40,
-    "baseAttack": 50
-  },
-  {
-    "name": "Zombie Giant",
-    "class": 7,
-    "baseHp": 60,
-    "baseDef": 55,
-    "baseAttack": 45
+    "baseHp": 56,
+    "baseDef": 48,
+    "baseAttack": 46
   },
   {
     "name": "Zombie Bear",
     "class": 8,
-    "baseHp": 65,
-    "baseDef": 65,
-    "baseAttack": 38
+    "baseHp": 60,
+    "baseDef": 60,
+    "baseAttack": 35
   },
   {
     "name": "Giant",
     "class": 8,
-    "baseHp": 72,
-    "baseDef": 61,
-    "baseAttack": 43
+    "baseHp": 67,
+    "baseDef": 56,
+    "baseAttack": 40
   },
   {
     "name": "Olog-hai",
     "class": 8,
-    "baseHp": 75,
-    "baseDef": 60,
-    "baseAttack": 45
+    "baseHp": 70,
+    "baseDef": 55,
+    "baseAttack": 42
   },
   {
     "name": "Higher Vampire",
     "class": 8,
-    "baseHp": 60,
-    "baseDef": 50,
-    "baseAttack": 61
+    "baseHp": 55,
+    "baseDef": 45,
+    "baseAttack": 58
   },
   {
     "name": "Fell Beast",
     "class": 8,
-    "baseHp": 67,
-    "baseDef": 53,
-    "baseAttack": 58
+    "baseHp": 62,
+    "baseDef": 48,
+    "baseAttack": 55
   },
   {
     "name": "Lich King",
     "class": 8,
-    "baseHp": 63,
-    "baseDef": 55,
-    "baseAttack": 63
-  },
-  {
-    "name": "Dark Crusader",
-    "class": 8,
-    "baseHp": 70,
-    "baseDef": 63,
-    "baseAttack": 55
-  },
-  {
-    "name": "Void Knight",
-    "class": 8,
-    "baseHp": 65,
-    "baseDef": 60,
-    "baseAttack": 59
-  },
-  {
-    "name": "Dwarf Lord",
-    "class": 8,
-    "baseHp": 75,
-    "baseDef": 67,
-    "baseAttack": 51
-  },
-  {
-    "name": "Abyssal Horror",
-    "class": 8,
-    "baseHp": 60,
+    "baseHp": 58,
     "baseDef": 50,
     "baseAttack": 60
   },
   {
+    "name": "Dark Crusader",
+    "class": 8,
+    "baseHp": 65,
+    "baseDef": 58,
+    "baseAttack": 52
+  },
+  {
+    "name": "Void Knight",
+    "class": 8,
+    "baseHp": 60,
+    "baseDef": 55,
+    "baseAttack": 56
+  },
+  {
+    "name": "Dwarf Lord",
+    "class": 8,
+    "baseHp": 70,
+    "baseDef": 62,
+    "baseAttack": 48
+  },
+  {
     "name": "Giant Spider",
     "class": 9,
-    "baseHp": 75,
-    "baseDef": 75,
-    "baseAttack": 68
+    "baseHp": 70,
+    "baseDef": 70,
+    "baseAttack": 65
   },
   {
     "name": "Dragon Hatchling",
     "class": 9,
-    "baseHp": 85,
-    "baseDef": 70,
-    "baseAttack": 73
+    "baseHp": 80,
+    "baseDef": 65,
+    "baseAttack": 70
   },
   {
     "name": "Ancient Wyrm",
     "class": 9,
-    "baseHp": 90,
-    "baseDef": 80,
-    "baseAttack": 71
+    "baseHp": 85,
+    "baseDef": 75,
+    "baseAttack": 68
   },
   {
     "name": "Void Stalker",
     "class": 9,
-    "baseHp": 77,
-    "baseDef": 73,
-    "baseAttack": 78
+    "baseHp": 72,
+    "baseDef": 68,
+    "baseAttack": 75
   },
   {
     "name": "Dark Emperor",
     "class": 9,
-    "baseHp": 85,
-    "baseDef": 75,
-    "baseAttack": 78
+    "baseHp": 80,
+    "baseDef": 70,
+    "baseAttack": 75
   },
   {
     "name": "Elemental Lord",
     "class": 9,
-    "baseHp": 80,
-    "baseDef": 70,
-    "baseAttack": 83
+    "baseHp": 75,
+    "baseDef": 65,
+    "baseAttack": 80
   },
   {
     "name": "Nightmare Beast",
     "class": 9,
-    "baseHp": 83,
-    "baseDef": 77,
-    "baseAttack": 79
+    "baseHp": 78,
+    "baseDef": 72,
+    "baseAttack": 76
   },
   {
     "name": "Fallen Archangel",
     "class": 9,
-    "baseHp": 79,
-    "baseDef": 71,
-    "baseAttack": 85
+    "baseHp": 74,
+    "baseDef": 66,
+    "baseAttack": 82
   },
   {
     "name": "Morrigan",
     "class": 9,
-    "baseHp": 83,
-    "baseDef": 70,
-    "baseAttack": 81
-  },
-  {
-    "name": "Dungeon Tyrant",
-    "class": 9,
-    "baseHp": 80,
-    "baseDef": 70,
-    "baseAttack": 70
+    "baseHp": 78,
+    "baseDef": 65,
+    "baseAttack": 78
   },
   {
     "name": "Primordial Titan",
     "class": 10,
-    "baseHp": 125,
-    "baseDef": 90,
-    "baseAttack": 78
+    "baseHp": 120,
+    "baseDef": 85,
+    "baseAttack": 75
   },
   {
     "name": "Shadowlord",
     "class": 10,
-    "baseHp": 95,
-    "baseDef": 75,
-    "baseAttack": 98
+    "baseHp": 90,
+    "baseDef": 70,
+    "baseAttack": 95
   },
   {
     "name": "World Serpent",
     "class": 10,
-    "baseHp": 115,
-    "baseDef": 95,
-    "baseAttack": 83
+    "baseHp": 110,
+    "baseDef": 90,
+    "baseAttack": 80
   },
   {
     "name": "Archlich",
     "class": 10,
-    "baseHp": 90,
-    "baseDef": 65,
-    "baseAttack": 108
+    "baseHp": 85,
+    "baseDef": 60,
+    "baseAttack": 105
   },
   {
     "name": "Avatar of Death",
     "class": 10,
-    "baseHp": 100,
-    "baseDef": 80,
-    "baseAttack": 103
+    "baseHp": 95,
+    "baseDef": 75,
+    "baseAttack": 100
   },
   {
     "name": "God-King",
     "class": 10,
-    "baseHp": 135,
-    "baseDef": 95,
-    "baseAttack": 88
+    "baseHp": 130,
+    "baseDef": 90,
+    "baseAttack": 85
   },
   {
     "name": "Planar Dragon",
     "class": 10,
-    "baseHp": 120,
-    "baseDef": 100,
-    "baseAttack": 93
+    "baseHp": 115,
+    "baseDef": 95,
+    "baseAttack": 90
   },
   {
     "name": "Void Incarnate",
     "class": 10,
-    "baseHp": 105,
-    "baseDef": 85,
-    "baseAttack": 113
-  },
-  {
-    "name": "Dungeon Lord",
-    "class": 10,
-    "baseHp": 110,
-    "baseDef": 85,
-    "baseAttack": 90
+    "baseHp": 100,
+    "baseDef": 80,
+    "baseAttack": 110
   }
 ]

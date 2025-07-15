@@ -44,6 +44,9 @@ class tradingWindow(Window):
                     self.menu.position = 0
                     self.menu.index =0
                     self.menu.selected = 0
+                else:
+                    running = False
+                    
                 # Not sure if this works
     def addItem(self,item:item):
         self.allItems.append(item)
@@ -52,7 +55,10 @@ class tradingWindow(Window):
         self.menu.list = self.renderCurrentList()
         self.menu.renderList()           
     def removeItem(self,selected:int):
-        del self.allItems[selected]
+        if self.currentList != self.allItems:
+            self.allItems.remove(self.currentList.pop(selected))
+        else:
+            self.currentList.pop(selected)
         self.sortIntoCat()
         self.clear()
         self.menu.list = self.renderCurrentList()
@@ -104,7 +110,7 @@ class tradingWindow(Window):
                 self.armour.append(item)
             elif t is book:
                 self.books.append(item)
-            elif t is fish:
+            elif t is fish or food:
                 self.food.append(item)
             elif t is helmet:
                 self.helmets.append(item)
@@ -236,13 +242,17 @@ class tradingMenu:
         self.activeWin = 0
         
         sys.stdout.write(f"\033[{0};{0}H{Player.name}")
-        self.playerWindow = tradingWindow(0,2,35,30,"Player",Player.items) 
         
+        playerItems = [] 
+        for item in Player.items:
+            if item not in Player.equiptItems.values():
+                playerItems.append(item)
+        self.playerWindow = tradingWindow(0,2,35,30,"Player",playerItems) 
         self.transWindow = transWindow(self.playerWindow.w+10,3,25,15,Player.items,Vendor.items)
         self.transInfoWindow = valueWin(self.transWindow.x,self.transWindow.h+self.transWindow.y + 3,self.transWindow.w,9,0,0,Player.gold)
         self.traderWindow = tradingWindow(self.transWindow.x+self.transWindow.w+10,self.playerWindow.y,self.playerWindow.w,30,"Vendor",Vendor.items)
         sys.stdout.write(f"\033[{0};{self.traderWindow.x+1}H{Vendor.name}")
-        sys.stdout.write(f"\033[{self.playerWindow.h + self.playerWindow.y+4};{0}H{"Change Category: <- -> ,Change Window: z x, Confirm Transaction: c , Exit b"}")
+        sys.stdout.write(f"\033[{self.playerWindow.h + self.playerWindow.y+4};{0}H{'Change Category: <- -> ,Change Window: z x, Confirm Transaction: c , Exit b'}")
         self.winDict = {0:self.playerWindow,1:self.transWindow,2:self.traderWindow}
         self.traderWindow.lstNoSelect()
         self.selected = None
@@ -266,6 +276,7 @@ class tradingMenu:
             elif self.selected == -5:
                 buy = False
                 sum = self.transWindow.playerValue - self.transWindow.vendorValue
+                #Check can afford 
                 if sum > 0:
                     Player.gold+= sum 
                     running = False
@@ -278,7 +289,11 @@ class tradingMenu:
                         buy = True
                         running =  False 
                 if buy :
-                    Player.items = self.playerWindow.allItems
+                    equiptItems = []
+                    for item in list(Player.equiptItems.values()):
+                        if item != None:
+                            equiptItems.append(item)
+                    Player.items = self.playerWindow.allItems + equiptItems
                     Vendor.items = self.traderWindow.allItems
                     counter = 0
                     for item in self.transWindow.allItems:
@@ -288,6 +303,14 @@ class tradingMenu:
                             Vendor.items.append(item)
                         counter +=1
             elif self.selected == -6:
+                counter =0
+                for item in self.transWindow.allItems:
+                    
+                        if self.transWindow.checkList[counter]:
+                            Player.items.append(item)
+                        else:
+                            Vendor.items.append(item)
+                        counter +=1
                 running = False
             #change window
             elif self.selected < 0:
@@ -309,13 +332,13 @@ class tradingMenu:
             else :
                 #add to the transaction 
                 if(self.activeWin == 0):
-                    self.transWindow.addItem((True,Player.items[self.selected]))
+                    self.transWindow.addItem((True,playerItems[self.selected]))
                     self.playerWindow.removeItem(self.selected)
                     self.transInfoWindow.update(self.transWindow.playerValue,self.transWindow.vendorValue)
                     
                     pass 
                 elif(self.activeWin == 2):
-                    self.transWindow.addItem((False,Vendor.items[self.selected]))
+                    self.transWindow.addItem((False,self.traderWindow.currentList[self.selected]))
                     self.traderWindow.removeItem(self.selected)
                     self.transInfoWindow.update(self.transWindow.playerValue,self.transWindow.vendorValue)
 # clear()             

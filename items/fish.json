@@ -1,30 +1,12 @@
 [
   {
     "type": "Fish",
-    "class": 1,
-    "name": "Stale Bread Crumbs",
-    "value": 0,
-    "description": "Rock-hard crumbs that have seen better days. Better than starving, but only just barely.",
-    "hp": 1,
-    "dayTillRot": 1
-  },
-  {
-    "type": "Fish",
     "class": 2,
     "name": "Pond Minnow",
     "value": 2,
     "description": "A tiny freshwater fish. Barely a mouthful, but every bit of sustenance counts in these dark times.",
     "hp": 3,
     "dayTillRot": 1
-  },
-  {
-    "type": "Fish",
-    "class": 3,
-    "name": "Turnip",
-    "value": 3,
-    "description": "A humble root vegetable. Not the most appetizing, but it will keep you alive through the harsh winter months.",
-    "hp": 8,
-    "dayTillRot": 5
   },
   {
     "type": "Fish",
@@ -38,55 +20,46 @@
   {
     "type": "Fish",
     "class": 5,
-    "name": "Venison Haunch",
-    "value": 25,
-    "description": "Fresh meat from a forest deer. Rich and satisfying, this will restore strength to weary travelers. Best roasted over an open flame.",
-    "hp": 35,
-    "dayTillRot": 4
+    "name": "\u16cb\u16aa\u16d7 \u16bb\u16c1\u16de\u16d6",
+    "value": 9,
+    "hp": 25,
+    "dayTillRot": 5,
+    "description": "Large ugly fish plentyful in the cold lands of the North East.People have to desire to name it in the common tounge, they only care for it's good taste"
   },
   {
     "type": "Fish",
-    "class": 6,
-    "name": "Honey-Glazed Ham",
-    "value": 45,
-    "description": "A fine cut of pork, glazed with rare wildflower honey. The kind of meal served in noble halls, rich enough to satisfy even the heartiest appetite.",
-    "hp": 60,
-    "dayTillRot": 6
+    "class": 3,
+    "name": "Forgorth's Delight",
+    "value": 8,
+    "hp": 8,
+    "dayTillRot": 3,
+    "description": "As he sat on the Starsteel Throne, Forgorth commanded great quantities of this fish. The original name is forgotten"
   },
   {
     "type": "Fish",
-    "class": 7,
-    "name": "Moonberry Pie",
-    "value": 80,
-    "description": "Baked with rare moonberries that only grow in blessed groves. The pie glows faintly with ethereal light and is said to grant visions of the future.",
-    "hp": 90,
-    "dayTillRot": 8
+    "class": 2,
+    "name": "Narflyn",
+    "value": 1,
+    "hp": 3,
+    "dayTillRot": 4,
+    "description": "Small silver fish with a bright emarld tint. Eaten by many.Some people of the northern mountains have gods in it's image, as it alone carried them the the cold of dark times"
   },
   {
     "type": "Fish",
-    "class": 8,
-    "name": "Phoenix Egg Omelette",
-    "value": 150,
-    "description": "Prepared from the egg of a phoenix, this dish radiates warmth and vitality. Consuming it fills the body with rejuvenating fire that can heal grievous wounds.",
-    "hp": 120,
-    "dayTillRot": 10
-  },
-  {
-    "type": "Fish",
-    "class": 9,
-    "name": "Kraken Steak",
-    "value": 300,
-    "description": "A massive cut from the legendary sea beast. The meat is tough but incredibly nourishing, said to grant temporary resistance to drowning and deep-sea pressure.",
-    "hp": 180,
-    "dayTillRot": 12
+    "class": 3,
+    "name": "Therkain",
+    "value": 2,
+    "hp": 6,
+    "dayTillRot": 8,
+    "description": "Only thing faster than this fish is the speed at which it is eaten."
   },
   {
     "type": "Fish",
     "class": 10,
-    "name": "Ambrosia of the Gods",
-    "value": 1000,
-    "description": "The legendary Fish of the divine realm. A single bite is said to grant immortality for a day and restore the consumer to perfect health. Wars have been fought over a single vial.",
-    "hp": 300,
-    "dayTillRot": 365
+    "name": "Gleeby Gllorby",
+    "value": 100,
+    "hp": 38,
+    "dayTillRot": 4,
+    "description": "Gleeby Gllorby is an astronmically slow fish due to it's imposing mass. As a result it is a filling meal even for the greatest of men"
   }
 ]

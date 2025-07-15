@@ -1,7 +1,7 @@
 import time
 
 class clock:
-    def __init__(self,dayMinReal:int = 30,strtDay:int= 0):
+    def __init__(self,dayMinReal:int = 5,strtDay:int= 0):
         self.day = strtDay 
         self.lastStamp = time.time()
         self.time = [9,0]

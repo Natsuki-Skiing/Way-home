@@ -5,6 +5,7 @@ from town import *
 from dungeon import *
 from window import *
 from itemManager import *
+from clock import *
 colourTable = {
     "reset": "\033[0m",
     "green": "\033[32m",
@@ -13,7 +14,8 @@ colourTable = {
     "blue": "\033[34m",
     "red": "\033[31m",
     "purple": "\033[95m",           # Bright magenta / purple
-    "pink": "\033[38;5;213m" 
+    "pink": "\033[38;5;213m",
+    "orange": "\033[38;5;208m"
 }
 
 
@@ -45,6 +47,7 @@ townTile = tile("T",True,"red")
 groundTiles = [moss,shrub,flowerYellow,flowerPurp]
 groundTilesWeight = [5,2,1,1]
 wall = tile("#",False,"gray")
+campsiteTile = tile("C",True,"orange")
 playerTile = tile('P',False,"red")
 dungeonTile = tile("D",True,"red")
 floor = tile(".",True,"green")
@@ -133,7 +136,14 @@ class map :
             for dy in range(-max_d, max_d + 1):
                 if abs(dx) + abs(dy) <= max_d:  # Use Euclidean here if needed
                     coords.append((x + dx, y + dy))
-        return coords        
+        return coords      
+    def placeCampfire(self,x:int,y:int):
+        
+        self.tiles[(x,y)] = campsiteTile
+            
+        
+        
+            
                 
                 
                 
@@ -153,7 +163,10 @@ class world:
         self.tileSwap = None
         self.lastTileX = 0
         self.lastTileY= 0
-        
+        self.GClock = clock()
+        #used for town and dungeon chance generation
+        self.sinceTown = 0
+        self.sinceDun =0
         self.sideTiles = [wall,floor]
         self.frame = "x" + mapX*"=" +"x"
         self.Window = Window(0,0,mapX,mapY,"Way Home")
@@ -273,17 +286,13 @@ class world:
         self.Window.draw_text(x, y, Tile.render())
 
     def drawOnlyPlayer(self, newLoc, prevLoc):
-        """
-        Efficiently update only the two cells that changed:
-        - restore the tile under the player at prevLoc
-        - draw the player at newLoc
-        """
+        # to reduce flickering from redrawing whole map on lower end machines
         sys.stdout.write("\033[s")      # save cursor
-        # 1) redraw what was under the player before
+        
         tileUnder = self.maps[self.currentMap].tiles[prevLoc]
         self.printAt(prevLoc, tileUnder)
 
-        # 2) draw the player in the new spot
+        
         self.printAt(newLoc, playerTile)
 
         sys.stdout.write("\033[u")      # restore cursor
@@ -312,3 +321,11 @@ class world:
         # Ensure output is flushed to the terminal
        
         sys.stdout.flush()
+    def placeCampfire(self,x:int,y:int)->bool:
+        returnValue = False 
+        forbiddenTiles = ["T","C","D","≈","♣"]
+        if self.tileSwap.tile not in forbiddenTiles:
+            self.tileSwap = campsiteTile 
+            self.maps[self.currentMap].placeCampfire(x,y)
+            returnValue = True
+        return(returnValue)

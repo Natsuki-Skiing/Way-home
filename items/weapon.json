@@ -12,8 +12,8 @@
     "type": "Weapon",
     "class": 1,
     "name": "Kitchen Fork",
-    "damage": 10,
-    "maxCondition": 100,
+    "damage": 3,
+    "maxCondition": 30,
     "value": 1,
     "description": "A kitchen fork, not a fancy one. Is made from steel. Handle has some rust on it, probably reduces the value"
   },
