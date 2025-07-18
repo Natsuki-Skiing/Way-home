@@ -17,7 +17,8 @@ class player(creature):
         self.name = name
         self.wX = 0
         self.wY = 0
-        
+        #A campsite placed by player 
+        self.respawnCamp = None
         self.gold = 10
         self.defense = 3
         self.attack = 5
@@ -32,6 +33,7 @@ class player(creature):
         self.totalXp = 0
         self.swordFrags = 0
         self.madeSword = False
+        self.numberRespawns = 0
     def addHp(self,amount:int):
         self.hp += amount 
         if(self.hp >self.maxHp):
@@ -362,6 +364,7 @@ class player(creature):
         score += self.swordFrags * 1000 
         if self.madeSword:
             score += 5000
+        score -= self.numberRespawns *120
         return(score)
     def hasCampFire(self)->bool:
         returnVal = False 

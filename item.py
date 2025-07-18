@@ -70,5 +70,7 @@ class potion(item):
     def __init__(self, name, value, description):
         super().__init__(name, value, description)
     
-    
+class spellIngredient(item):
+    def __init__(self, name, value, description):
+        super().__init__(name, value, description)
 equipableItems = [armour,weapon,helmet,fishingRod]

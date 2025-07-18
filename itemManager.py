@@ -16,6 +16,7 @@ class itemManager:
             
         #campsite is item is more of a check rather than an item so just adding here 
         self.AllItems["campfire"] ={1:item("Campfire",20,"Equiptment used to make a camp")}
+        self.AllItems["wood"] = {1:item("CampWood",10,"Needed to light a campfire. A campfire must be lit to perform it's functions, use these to do so")}
     def getItem(self,Type:str,itemClass:int,itemLevel:int):
         itemClasses = list(self.AllItems[Type].keys())
         if itemClass not in itemClasses:

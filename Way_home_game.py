@@ -30,7 +30,7 @@ from dungeon import *
 from creatureManager import *
 from mapClasses import *
 from fishing import *
-
+from campfireMenu import *
 
 
 
@@ -359,7 +359,11 @@ class WayHome:
             if(random.randint(0,12) ==1):
                 
                 
-                battleSystem(self.Player,self.CrManOver,self.calcDist())
+                respawn = battleSystem(self.Player,self.CrManOver,self.calcDist())
+                if respawn:
+                    self.World.currentMap = self.Player.respawnCamp.location[0]
+                    self.World.tileSwap = campsiteTile
+                    
                 clear()
                 self.redrawAll()
     def saveGame(self):
@@ -430,15 +434,19 @@ class WayHome:
                         self.World.maps[self.World.currentMap].town.townMainLoop(self.World.GClock.GetFullTime(),self.Player)
                         hasCampfire = self.Player.hasCampFire()
                 case 'c':
+                    location = (self.World.currentMap,(self.Player.x,self.Player.y))
                     #place 
                     if hasCampfire and self.World.placeCampfire(self.Player.x,self.Player.y):
                         self.logWin.addMsg(("Placed campfire at "+str(self.Player.x)+", "+str(self.Player.y)))
                         hasCampfire = self.Player.hasCampFire()
+                        self.World.maps[self.World.currentMap].campFires[location] = (campFire(location))
+                        
                     elif hasCampfire:
                         self.logWin.addMsg("Cannot place campfire at this location")
                     elif self.World.tileSwap == campsiteTile:
                         # enter campsite
-                        #TODO make campsite logic
+                        self.World.maps[self.World.currentMap].campsFires[location].mainLoop(self.Player)
+                        
                         pass 
                     
                 case 'f':

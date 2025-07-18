@@ -232,6 +232,7 @@ class battleSystem:
     def mainLoop(self,playersTurn):
         #DEBUG 
         #playersTurn = True
+        respawn = False
         running = True
         while running:
             if playersTurn:
@@ -263,7 +264,10 @@ class battleSystem:
             if(self.player.hp<=0):
                 #TODO 
                 self.gameOver()
-                pass
+                respawn = True
+                running = False 
+                break
+                
             elif(self.opp.hp <=0):
                 #opp is dead 
                 # calculate the xp for the player 
@@ -281,9 +285,11 @@ class battleSystem:
                 self.battleLog.addMsg("Gained "+str(xp)+" Xp")
                 
                 self.player.addXp(xp)
-                running = False 
+                running = False
         if(self.state == "run"):
-            return()
+            return(False)
+        else:
+            return(True)
         time.sleep(4)
     def genXp(self) -> int:
         
@@ -386,49 +392,59 @@ class battleSystem:
         else:
             self.battleLog.addMsg("You failed to hurt the "+self.opp.name) 
     def gameOver(self):
-        try:
-            os.remove("saves/"+self.player.name+".player")
-            os.remove("saves/"+self.player.name+".world")
-        except:
-            pass
-        clear()
-        Ascii = ascii()
-        Ascii.draw((0,0),"Game Over","red")
+        respawn = False
+        if self.player.respawnCamp != None:
+            if self.player.respawnCamp.checkRespawn():
+                self.player.numberRespawns +=1 
+                respawn = True 
+                # setting the players world pos to that of campFire 
+                self.player.x, self.player.y = self.player.respawnCamp.location[1]
+                self.player.hp = self.player.maxHp
         
-        
-        name = (self.player.name[:25]).center(39)
-        opp = (self.opp.name[:20]).center(26)
-        
-        tomb = f"""                                 _____  _____
-                                <     `/     |
-                                 >          (
-                                |   _     _  |
-                                |  |_) | |_) |
-                                |  | \ | |   |
-                                |            |
-                 ______.______%_|            |__________  _____
-               _/                                       \|     |
-              |{name}<
-              |_____.-._________              ____/|___________|
-                                | Slain by a |
-                                |{opp}|
-                                |            |
-                                |            |
-                                |   _        <
-                                |__/         |
-                                 / `--.      |
-                               %|            |%
-                           |/.%%|          -< @%%%
-                           `\%`@|     v      |@@%@%%
-                         .%%%@@@|%    |    % @@@%%@%%%%
-                    _.%%%%%%@@@@@@%%_/%\_%@@%%@@@@@@@%%%%%%"""
-        printAt(0,12,tomb)
-        printAt(0,38,("Score: "+str(self.player.calcScore())))
-        printAt(0,40,"Press enter to exit game")
-        while True:
-            key = readchar.readkey() 
-            if key ==readchar.key.ENTER :
-                exit()   
+        if(not respawn):   
+            try:
+                os.remove("saves/"+self.player.name+".player")
+                os.remove("saves/"+self.player.name+".world")
+            except:
+                pass
+            clear()
+            Ascii = ascii()
+            Ascii.draw((0,0),"Game Over","red")
+            
+            
+            name = (self.player.name[:25]).center(39)
+            opp = (self.opp.name[:20]).center(26)
+            
+            tomb = f"""                                 _____  _____
+                                    <     `/     |
+                                    >          (
+                                    |   _     _  |
+                                    |  |_) | |_) |
+                                    |  | \ | |   |
+                                    |            |
+                    ______.______%_|            |__________  _____
+                _/                                       \|     |
+                |{name}<
+                |_____.-._________              ____/|___________|
+                                    | Slain by a |
+                                    |{opp}|
+                                    |            |
+                                    |            |
+                                    |   _        <
+                                    |__/         |
+                                    / `--.      |
+                                %|            |%
+                            |/.%%|          -< @%%%
+                            `\%`@|     v      |@@%@%%
+                            .%%%@@@|%    |    % @@@%%@%%%%
+                        _.%%%%%%@@@@@@%%_/%\_%@@%%@@@@@@@%%%%%%"""
+            printAt(0,12,tomb)
+            printAt(0,38,("Score: "+str(self.player.calcScore())))
+            printAt(0,40,"Press enter to exit game")
+            while True:
+                key = readchar.readkey() 
+                if key ==readchar.key.ENTER :
+                    exit()   
             
 #DEBUG          
 # testOpp = creatureManager("Creatures","OverWorld")
