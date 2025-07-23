@@ -1,6 +1,7 @@
 *.player 
 *.world
 
-
+saves/*.player
+saves/*.world
 __pycache__/
 *.pyc
