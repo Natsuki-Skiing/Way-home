@@ -62,6 +62,7 @@ class map :
         #So i can pick one to be a food tree if i wish
         shrubLoctions  = list()
         self.shrubTimerDict = dict()
+        self.campFires = dict()
         for h in range(y):
             for w in range(x):
                 #Had set to wall originally changed to floor to test movement 
