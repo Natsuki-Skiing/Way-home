@@ -1,0 +1,6 @@
+*.player 
+*.world
+
+
+__pycache__/
+*.pyc
