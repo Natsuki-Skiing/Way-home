@@ -116,11 +116,11 @@ class battleSystem:
         
         #Creature with higher level goes first 
         if (Player.level == self.opp.level):
-            playerFirst = bool(random.getrandbits(1))
+            self.playerFirst = bool(random.getrandbits(1))
         else:
-            playerFirst = (Player.level > self.opp.level)
+            self.playerFirst = (Player.level > self.opp.level)
         
-        self.mainLoop(playerFirst)
+        
     def getCreature(self,creatureMan:creatureManager,distanceFromStart:int)->opp:
         if self.player.level <= 3:
             classWeight = [4,2,1,0,0,0,0,0,0,0]
@@ -246,7 +246,7 @@ class battleSystem:
                     #TODO 
                     #This is gross need to fix or not idc this isn't graded work
                     running = False
-                    return()
+                    return(respawn)
                 pass
             else:
                 pass
@@ -313,12 +313,12 @@ class battleSystem:
             scale = 2
         xp_gain = int(base_xp * (scale ** diff))
 
-        # Guarantee at least 1 XP
+        
         xp_gain = max(1, xp_gain) 
         if not self.run:
             xp_gain = math.ceil(xp_gain*1.5)
 
-        # Award it
+       
         
 
         return xp_gain
@@ -399,6 +399,7 @@ class battleSystem:
                 respawn = True 
                 # setting the players world pos to that of campFire 
                 self.player.x, self.player.y = self.player.respawnCamp.location[1]
+                self.player.prevLoc = self.player.respawnCamp.location[1]
                 self.player.hp = self.player.maxHp
         
         if(not respawn):   

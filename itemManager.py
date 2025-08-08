@@ -21,7 +21,8 @@ class itemManager:
         itemClasses = list(self.AllItems[Type].keys())
         if itemClass not in itemClasses:
             itemClass =  min(itemClasses, key=lambda x: abs(x - itemClass))
-        if Type == "campfire":
+        #For special non items 
+        if Type == "campfire" or Type == "wood":
             item = copy.deepcopy(self.AllItems[Type][1])
             
         else:

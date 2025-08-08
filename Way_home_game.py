@@ -54,6 +54,8 @@ def clear():
         
 class mainMenu():
     def __init__(self):
+        if not os.path.exists('saves'):
+            os.mkdir('saves')
         self.saves = False 
         
         if(len(os.listdir("saves"))>0):
@@ -307,8 +309,12 @@ class WayHome:
             if name == '' or name =='.':
                 
                 name = random.choice(names)
+             
             clear()
             self.Player = player(name)
+            #DEBUG
+            if name =="Motoko":
+                self.Player.gold = 10000
             self.World = world(x,y)
             
             self.statWin = statWin((2+x),0,30,y-9,name,self.World.currentMap,self.Player,self.World.GClock.GetFullTime())
@@ -359,11 +365,21 @@ class WayHome:
             if(random.randint(0,12) ==1):
                 
                 
-                respawn = battleSystem(self.Player,self.CrManOver,self.calcDist())
+                btSys = battleSystem(self.Player,self.CrManOver,self.calcDist())
+                respawn = btSys.mainLoop(btSys.playerFirst)
                 if respawn:
-                    self.World.currentMap = self.Player.respawnCamp.location[0]
-                    self.World.tileSwap = campsiteTile
-                    
+                    #DEBUG Try -excpet
+                    try:
+                        self.World.currentMap = self.Player.respawnCamp.location[0]
+                        self.World.tileSwap = campsiteTile
+                        clear()
+                        title = ascii()
+                        title.draw((0,0),"Respawn","green")
+                        printAt(0,8,"You died, but fortunately you had the foresight to light a campfire")
+                        printAt(0,9,"")
+                        input("Press enter to respawn at your campfire")
+                    except:
+                        pass
                 clear()
                 self.redrawAll()
     def saveGame(self):
@@ -441,13 +457,13 @@ class WayHome:
                         hasCampfire = self.Player.hasCampFire()
                         self.World.maps[self.World.currentMap].campFires[location] = (campFire(location))
                         
-                    elif hasCampfire:
+                    elif hasCampfire and self.World.tileSwap != campsiteTile:
                         self.logWin.addMsg("Cannot place campfire at this location")
                     elif self.World.tileSwap == campsiteTile:
                         # enter campsite
-                        self.World.maps[self.World.currentMap].campsFires[location].mainLoop(self.Player)
+                        self.World.maps[self.World.currentMap].campFires[location].mainLoop(self.Player)
+                        update = 2
                         
-                        pass 
                     
                 case 'f':
                     # Will be able to fish

@@ -1,4 +1,4 @@
-
+import random
 from player import *
 from ascii import *
 from clear import *
@@ -11,20 +11,20 @@ class campFire:
         self.respawnCost = 5
         pass
     def drawMenu(self):
-        title = ascii
+        title = ascii()
         campColours = ["red","yellow"]
         
         
         clear()
         
         title.draw((0,0),"Campfire",random.choice(campColours))
-        printAt(0,17,("Current wood level: "+str(self.woodLevel)))
-        printAt(0,18,("Is current respawn point: "+str(self.respawnPoint)))
-        printAt(0,20,("0 : Sleep (10 wood)"))
-        printAt(0,21,("1 : Set as spawn"))
-        printAt(0,22,("2 : Add wood to fire"))
-        printAt(0,23,"3 : Back")
-            
+        printAt(0,8,("Current wood level: "+str(self.woodLevel)))
+        printAt(0,9,("Is current respawn point: "+str(self.respawnPoint)))
+        printAt(0,10,("0 : Sleep (10 wood)"))
+        printAt(0,11,("1 : Set as spawn"))
+        printAt(0,12,("2 : Add wood to fire"))
+        printAt(0,13,"3 : Back")
+        printAt(0,14,"")    
     def checkRespawn(self):
         returnValue = False 
         if(self.woodLevel >= self.respawnCost):
@@ -34,7 +34,7 @@ class campFire:
         return(returnValue)
         
         
-        return(returnValue)   
+          
     def mainLoop(self,Player:player):
         Player = Player
         running = True
@@ -56,12 +56,14 @@ class campFire:
                         self.setSpawn(Player) 
                     elif choice == 2:
                         self.addWood(Player)
+                    elif choice ==3:
+                        running = False 
             except:
                 continue
     def addWood(self,Player:player):
         numberOfWood = 0
         for item in Player.items:
-            if item.name == "wood":
+            if item.name == "CampWood":
                 numberOfWood +=1 
         if numberOfWood == 0:
             print("You have no wood")
@@ -84,11 +86,12 @@ class campFire:
                         currentIndex = 0
                         length = len(Player.items)
                         while currentIndex < length and removed < amount:
-                            if Player.items[currentIndex].name == "wood":
+                            if Player.items[currentIndex].name == "CampWood":
                                 Player.items.pop(currentIndex)
                                 removed += 1
                             else:
                                 currentIndex += 1
+                        self.woodLevel += removed
                         running = False
                                         
                 except:

@@ -51,9 +51,8 @@ class vendor:
         
         # Actually getting the items now 
         for key, value in splitDict.items():
-            #DEBUG 
-            if key == "campfire":
-                pass
+            
+           
             i = 0
             sinceLastItem = 0
             while i < value:
@@ -62,13 +61,15 @@ class vendor:
                     #DEBUG
                     #Trying just random from all item classes 
                     #tempItem = self.itemManager.getItem(key,self.classFromLevel(playerLevel),random.randint(itemLevelRange[0],itemLevelRange[1]))
+                    
                     tempItem = self.itemManager.getItem(key,random.randint(1,10),random.randint(itemLevelRange[0],itemLevelRange[1]))
                     if(tempItem.value >0):
                         self.items.append(tempItem)
                         i +=1
                     else:
                         sinceLastItem +=1
-                except:
+                except RuntimeError as e :
+                    print(e)
                     sinceLastItem +=1
                     pass
                 
@@ -94,4 +95,4 @@ class hunts(vendor):
     def __init__(self, level, itemManager):
         super().__init__(level, itemManager)
     def generateInventory(self,  playerLevel):
-        super().generateInventory(random.randint(10,25),["fishingRod","campfire"],playerLevel)
+        super().generateInventory(random.randint(12,25),["fishingRod","campfire","wood"],playerLevel)

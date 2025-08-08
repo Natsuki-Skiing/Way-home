@@ -234,7 +234,7 @@ class ascii:
         }
 
     def convertToAscii(self, textInput: str, textColor: str) -> list[str]: 
-        # Choose color
+        
         if textColor.lower() in self.colors.keys(): 
             chosenColor = self.colors[textColor.lower()]
         elif textColor.lower() in ["rand", "random", "r"]:
@@ -242,7 +242,7 @@ class ascii:
         else:
             chosenColor = self.colors["grey"]
 
-        # Get the ASCII art for each character
+        
         charArt = [] 
         for char in textInput.lower(): 
             if char in self.font:
@@ -254,13 +254,13 @@ class ascii:
         #
         combinedTextRows = [] 
         for zippedRows in zip(*charArt): 
-            # Join the individual character rows to form a full line of text
+           
             fullLineText = "".join(zippedRows) 
             combinedTextRows.append(chosenColor + fullLineText + self.colors["reset"]) #
 
         return combinedTextRows
 
-    def draw(self,coord:tuple, text:str,colour:str): # Re-added the draw function
+    def draw(self,coord:tuple, text:str,colour:str):
         asciiText = self.convertToAscii(text,colour)
         counter = coord[1]
         for line in asciiText:
