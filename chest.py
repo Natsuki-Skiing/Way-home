@@ -16,7 +16,7 @@ class chest:
         clear()
         self.itemsWin = Window(0,0,66,10,"Chest")
         self.hasSword = hasSwordPiece
-        self.mainLoop()
+        #self.mainLoop()
 
     def mainLoop(self):
         self.takenItems = []
@@ -37,7 +37,7 @@ class chest:
             self.itemsWin.row_draw(stringList,2)
             
             # Print instructions below the window
-            printAt(self.itemsWin.h+3,0,"Number to take item. A for all. E for exit")
+            printAt(0,13,"Number to take item. A for all. E for exit")
             choice = input(">").lower()
             
             match(choice):

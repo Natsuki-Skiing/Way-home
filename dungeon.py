@@ -329,8 +329,8 @@ class dungeon:
                             Chest = self.chestsDict[chestKey]
                             swordChest = Chest.hasSword
                         else:
-                            #Chest that has a sword piece
-                            if self.hasSword and not self.foundSword and random.randint(0,2) ==0:
+                            #Chest that has a sword piece, Also checking to see if there is less than 4 pices in existance
+                            if self.hasSword and not self.foundSword and random.randint(0,2) ==0 and len(self.player.swordFragsFound) > 4:
                                 Chest = chest(self.player.level+int(self.currentLevel/2),self.ItMan,True)
                                 swordChest = True
                             else:

@@ -31,7 +31,7 @@ from creatureManager import *
 from mapClasses import *
 from fishing import *
 from campfireMenu import *
-
+from Intro.intro import introSeq
 
 
 
@@ -310,13 +310,31 @@ class WayHome:
                 
                 name = random.choice(names)
              
-            clear()
+            
             self.Player = player(name)
             #DEBUG
             if name =="Motoko":
                 self.Player.gold = 10000
                 self.Player.defense = 99999
                 self.Player.attack = 999999
+            
+            while True:
+                clear()
+                print('Play Intro Text? Y/N')
+                try:
+                    choice = input(">").lower()
+                    if(choice == "y"):
+                        intro = introSeq()
+                        intro.start()
+                        break
+                    elif(choice =="n"):
+                        break 
+                    else:
+                        continue
+                except:
+                    continue
+            
+            clear()
             self.World = world(x,y)
             
             self.statWin = statWin((2+x),0,30,y-9,name,self.World.currentMap,self.Player,self.World.GClock.GetFullTime())

@@ -1,0 +1,8 @@
+Each new line is printed as such. A line cannot exceed 50 characters.
+The darkness has risen.
+It devours the realm of man.
+To banish the evil, you walk the Between.
+Seek the four shards of the Blade of Light.
+Only it can drive back the endless night.
+Each shard lies in a dungeon of the four winds.
+Gather the shards, face the dark, and return.
