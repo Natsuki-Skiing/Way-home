@@ -200,7 +200,7 @@ class level:
                     self.drawCorridor(x1, y1, x2, y2)
 
 class dungeon:
-    def __init__(self,Player,windowW:int,windowH:int,levX:int,levY:int,noRooms:int,ItMan:itemManager,OpMan:creatureManager,distanceFromStart:int):
+    def __init__(self,Player,windowW:int,windowH:int,levX:int,levY:int,noRooms:int,ItMan:itemManager,OpMan:creatureManager,distanceFromStart:int,hasSword = False):
         self.currentLevel = 1
         self.ItMan = ItMan 
         self.OpMan = OpMan
@@ -210,7 +210,7 @@ class dungeon:
         self.levY = levY
         self.noRooms = noRooms
         self.Clock = None
-       
+        self.hasSword = hasSword
         self.distFromStrt = distanceFromStart
         self.levels = {}
         self.levels[1] = self.newLevel() 
@@ -220,6 +220,9 @@ class dungeon:
         self.sightRange = 3
         self.strtRoom =  random.choice(self.levels[self.currentLevel].rooms)
         
+        self.chestsDict = dict()
+        
+        self.foundSword = False
         self.tileSwap = None
         self.playerStrtLoc()
     def newLevel(self)->level:
@@ -320,7 +323,20 @@ class dungeon:
                 case "c":
                     if(self.tileSwap == chestTile):
                         redrawAll = True 
-                        Chest = chest(self.player.level+int(self.currentLevel/2),self.ItMan)
+                        chestKey = (self.currentLevel,self.player.x,self.player.y)
+                        if chestKey in  self.chestsDict.keys():
+                            Chest = self.chestsDict[chestKey]
+                        else:
+                            #Chest that has a sword piece
+                            if self.hasSword and not self.foundSword and random.randint(0,3) ==0:
+                                Chest = chest(self.player.level+int(self.currentLevel/2),self.ItMan,True)
+                                
+                            else:
+                                
+                                Chest = chest(self.player.level+int(self.currentLevel/2),self.ItMan)
+                            self.chestsDict[chestKey] = Chest
+                                
+                                
                         Chest.mainLoop()
                 case "u":
                     if(self.tileSwap == stairsUp ):

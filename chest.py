@@ -21,7 +21,7 @@ class chest:
         while running:
             clear()  # Clear the entire screen at the start of each loop
             
-            # Redraw the window
+            
             self.itemsWin.draw()
             
             self.itemsWin.draw_text(0,0," # | Name                       | Val | Def | Dam | Cnd | Hp | Rot")
