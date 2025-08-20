@@ -323,21 +323,37 @@ class dungeon:
                 case "c":
                     if(self.tileSwap == chestTile):
                         redrawAll = True 
+                        swordChest = False
                         chestKey = (self.currentLevel,self.player.x,self.player.y)
                         if chestKey in  self.chestsDict.keys():
                             Chest = self.chestsDict[chestKey]
+                            swordChest = Chest.hasSword
                         else:
                             #Chest that has a sword piece
-                            if self.hasSword and not self.foundSword and random.randint(0,3) ==0:
+                            if self.hasSword and not self.foundSword and random.randint(0,2) ==0:
                                 Chest = chest(self.player.level+int(self.currentLevel/2),self.ItMan,True)
-                                
+                                swordChest = True
                             else:
                                 
                                 Chest = chest(self.player.level+int(self.currentLevel/2),self.ItMan)
                             self.chestsDict[chestKey] = Chest
                                 
                                 
-                        Chest.mainLoop()
+                        takenItems = Chest.mainLoop()
+                        if swordChest:
+                            for item in takenItems:
+                                if type(item) == bladeFrag:
+                                    # Probbaly a bit excessive 
+                                    # Trying to prevent the player from cheating the number of sword frags they have
+                                    if item.fragNumber not in self.player.swordFragsFound:
+                                        self.player.swordFrags += 1
+                                        item.fragNumber = self.player.swordFrags 
+                                        self.player.swordFragsFound.append(self.player.swordFrags)
+                                    
+                                    self.player.items.append(takenItems[0])
+                        else:
+                            self.player.items.extend(takenItems)
+                            
                 case "u":
                     if(self.tileSwap == stairsUp ):
                         if self.currentLevel > 1 :

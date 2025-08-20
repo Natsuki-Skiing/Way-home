@@ -315,6 +315,8 @@ class WayHome:
             #DEBUG
             if name =="Motoko":
                 self.Player.gold = 10000
+                self.Player.defense = 99999
+                self.Player.attack = 999999
             self.World = world(x,y)
             
             self.statWin = statWin((2+x),0,30,y-9,name,self.World.currentMap,self.Player,self.World.GClock.GetFullTime())

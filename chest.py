@@ -6,13 +6,16 @@ from printAt import printAt
 
 from clear import clear
 class chest:
-    def __init__(self,playerLevel:int,ItemManager:itemManager):
+    def __init__(self,playerLevel:int,ItemManager:itemManager,hasSwordPiece = False):
         
         self.playerLevel = playerLevel
-        self.items = self.generateItems(ItemManager) 
+        if not hasSwordPiece:
+            self.items = self.generateItems(ItemManager)
+        else:
+            self.items = [item("Blade Shard",0,"One piece of the blade of light. This joined with the other three make the only sword that can destroy the darkness",-1)]
         clear()
         self.itemsWin = Window(0,0,66,10,"Chest")
-       
+        self.hasSword = hasSwordPiece
         self.mainLoop()
 
     def mainLoop(self):
@@ -54,7 +57,7 @@ class chest:
                             
                     except:
                         pass
-            
+        return(self.takenItems)    
         
         
     def generateItems(self,ItemMan:itemManager) -> list:

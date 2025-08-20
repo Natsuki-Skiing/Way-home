@@ -72,5 +72,16 @@ class potion(item):
     
 class spellIngredient(item):
     def __init__(self, name, value, description):
+        super().__init__(name, value, description) 
+        
+class bladeFrag(item):
+    def __init__(self, name, value, description,fragNumber):
         super().__init__(name, value, description)
+        self.fragNumber = fragNumber
+        
+class inventoryItem():
+    def __init__(self,amount:int,item:item):
+        self.item = item 
+        self.amount = amount
+    
 equipableItems = [armour,weapon,helmet,fishingRod]

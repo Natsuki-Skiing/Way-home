@@ -32,6 +32,7 @@ class player(creature):
         self.creaturesKilled = dict()
         self.totalXp = 0
         self.swordFrags = 0
+        self.swordFragsFound = []
         self.madeSword = False
         self.numberRespawns = 0
     def addHp(self,amount:int):
