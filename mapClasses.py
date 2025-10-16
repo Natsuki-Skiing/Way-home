@@ -164,7 +164,7 @@ class world:
         self.tileSwap = None
         self.lastTileX = 0
         self.lastTileY= 0
-        self.GClock = clock()
+        self.GClock = clock(dayMinReal= 3)
         #used for town and dungeon chance generation
         self.sinceTown = 0
         self.sinceDun =0

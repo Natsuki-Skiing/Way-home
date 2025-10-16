@@ -285,12 +285,13 @@ class battleSystem:
                 self.battleLog.addMsg("Gained "+str(xp)+" Xp")
                 
                 self.player.addXp(xp)
+                time.sleep(1.5)
                 running = False
         if(self.state == "run"):
             return(False)
         else:
             return(True)
-        time.sleep(4)
+        
     def genXp(self) -> int:
         
         lvl_p = self.player.level
