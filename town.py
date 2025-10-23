@@ -85,6 +85,7 @@ class town:
                         print("0: Trade")
                         print("1: Repair Equiptment")
                         print("2: Enhance Equiptment")
+                        print("3: Exit")
                         try:
                             choice = int(input(">"))
                         except:
@@ -99,6 +100,8 @@ class town:
                         elif choice ==1 :
                             repWin = repairWindow(self.Player)
                             break
+                        elif choice == 3:
+                            running = False
                     self.drawMenu()
                     
                 case 1: 
