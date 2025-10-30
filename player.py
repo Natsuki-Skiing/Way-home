@@ -346,6 +346,14 @@ class player(creature):
         print("")
         print("Atk: ",self.attack)
         print("Def: ",self.defense)
+        print()
+        totDef = self.defense
+        if(self.equiptItems["helmet"]):
+            totDef += self.equiptItems["helmet"]
+        if(self.equiptItems["armour"]):
+            totDef += self.equiptItems["armour"]
+            
+        print("Def Including armour: ",(totDef))
         print("")
         print("Gold: ",self.gold)
         print("Press a enter to return")
