@@ -7,7 +7,7 @@ from window import Window
 from player import player
 from clear import clear
 from opp import opp
-from itemMaker import *
+#from itemMaker import *
 from creatureManager import *
 from selectMenu import *
 import math 
