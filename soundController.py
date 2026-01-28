@@ -14,10 +14,9 @@ class musicPlayer:
         self.playingSong = random.choice(self.songs)
         
     def main(self):
-        temp = self.playingSong
-        self.playingSong = random.choice(self.soundQueue)
-        self.soundQueue.append(temp)
-        self.soundQueue.remove(self.playingSong)
-        playsound(self.dir +self.playingSong) 
+        while(True):
+            self.playingSong = random.choice(self.songs)
+            playsound(self.dir +self.playingSong,block=True)
+            pass
     def start(self):
         self.thread.start()
