@@ -349,9 +349,9 @@ class player(creature):
         print()
         totDef = self.defense
         if(self.equiptItems["helmet"]):
-            totDef += self.equiptItems["helmet"]
+            totDef += self.equiptItems["helmet"].protection
         if(self.equiptItems["armour"]):
-            totDef += self.equiptItems["armour"]
+            totDef += self.equiptItems["armour"].protection
             
         print("Def Including armour: ",(totDef))
         print("")
